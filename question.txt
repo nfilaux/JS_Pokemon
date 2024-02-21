@@ -1,0 +1,13 @@
+1)
+
+Pokemon a :
+    -base_attack
+    -base_defense
+    -base_stamina
+    -pokemon_id
+    -pokemon_name
+    -type(s) --> tab
+    -charged_moves
+    -fast_moves
+    -elite_charged_moves
+    -elite_fast_moves
