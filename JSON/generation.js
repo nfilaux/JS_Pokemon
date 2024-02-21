@@ -3,8 +3,8 @@
 // Pokemon that are from that generation. 
 // Each Pokemon entry has its name, Pokemon ID, and generation number.
 
-{
-    "Generation 1": [
+let generation = [
+    "Generation 1" = [
         {
             "generation_number": 1,
             "id": 1,
@@ -761,7 +761,7 @@
             "name": "Mew"
 }
 ],
-    "Generation 2": [
+    "Generation 2" = [
         {
             "generation_number": 2,
             "id": 152,
@@ -1263,7 +1263,7 @@
             "name": "Celebi"
 }
 ],
-    "Generation 3": [
+    "Generation 3" = [
         {
             "generation_number": 3,
             "id": 252,
@@ -1940,7 +1940,7 @@
             "name": "Deoxys"
 }
 ],
-    "Generation 4": [
+    "Generation 4" = [
         {
             "generation_number": 4,
             "id": 387,
@@ -2477,7 +2477,7 @@
             "name": "Arceus"
 }
 ],
-    "Generation 5": [
+    "Generation 5" = [
         {
             "generation_number": 5,
             "id": 494,
@@ -3259,7 +3259,7 @@
             "name": "Genesect"
 }
 ],
-    "Generation 6": [
+    "Generation 6" = [
         {
             "generation_number": 6,
             "id": 650,
@@ -3621,7 +3621,7 @@
             "name": "Volcanion"
 }
 ],
-    "Generation 7": [
+    "Generation 7" = [
         {
             "generation_number": 7,
             "id": 722,
@@ -4063,7 +4063,7 @@
             "name": "Melmetal"
 }
 ],
-    "Generation 8": [
+    "Generation 8" = [
         {
             "generation_number": 8,
             "id": 810,
@@ -4485,4 +4485,4 @@
             "name": "Zarude"
 }
 ]
-}
+]
