@@ -1,4 +1,4 @@
-x// http://PoGoApi.net/api/v1/charged_moves.json
+// http://PoGoApi.net/api/v1/charged_moves.json
 // Returns a JSON array where each element is a dict containing :
 // - critical_chance (optional)
 // - duration,
