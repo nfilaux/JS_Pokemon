@@ -2,18 +2,18 @@ class Pokemon{
 
 	constructor (pokemon_id, pokemon_name, base_defense, base_attack, base_stamina, types, charged_moves, fast_moves, elite_charged_moves, elite_fast_moves) {
 		this._pokemon_id = pokemon_id
-        this._pokemon_name = pokemon_name
+    this._pokemon_name = pokemon_name
 
-        this._base_defense = base_defense
-        this._base_attack = base_attack
-        this._base_stamina = base_stamina
+    this._base_defense = base_defense
+    this._base_attack = base_attack
+    this._base_stamina = base_stamina
 
-        this._types = types
+    this._types = types
 
-        this._charged_moves = charged_moves
-        this._fast_moves = fast_moves
-        this._elite_charged_moves = elite_charged_moves
-        this._elite_fast_moves = elite_fast_moves
+    this._charged_moves = charged_moves
+    this._fast_moves = fast_moves
+    this._elite_charged_moves = elite_charged_moves
+    this._elite_fast_moves = elite_fast_moves
 	}
   
   get pokemon_id() {return this._pokemon_id}
@@ -31,7 +31,7 @@ class Pokemon{
   get elite_fast_moves() {return this._elite_fast_moves}
   
   toString() {return `[
-    pokemon_id = [${this.pokemon_id},\n
+    pokemon_id = ${this.pokemon_id},\n
     pokemon_name = ${this.pokemon_name},\n
     base_defense = ${this.base_defense},\n
     base_attack = ${this.base_attack},\n
