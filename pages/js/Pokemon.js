@@ -42,4 +42,13 @@ class Pokemon{
     elite_charged_moves = [${this.elite_charged_moves}],\n
     elite_fast_moves = [${this.elite_fast_moves}]\n
   ]`}
+
+}
+
+import_pokemon(){
+  var i = 0;
+  for(pokemon in pokemon){
+    var pok = new Pokemon(pokemon_id,pokemon_name,base_defense,base_attack,base_stamina,types,charged_moves,fast_moves,elite_charged_moves,elite_fast_moves);
+    console.log(pok.toString());
+  }
 }
