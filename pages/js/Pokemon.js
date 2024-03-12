@@ -16,19 +16,19 @@ class Pokemon{
         this._elite_fast_moves = elite_fast_moves
 	}
   
-  get pokemon_id() {return this._pokemon_id}
-  get pokemon_name() {return this._pokemon_name}
+  get pokemon_id() {return this._pokemon_id;}
+  get pokemon_name() {return this._pokemon_name;}
 
-  get base_defense() {return this._base_defense}
-  get base_attack() {return this._base_attack}
-  get base_stamina() {return this._base_stamina}
+  get base_defense() {return this._base_defense;}
+  get base_attack() {return this._base_attack;}
+  get base_stamina() {return this._base_stamina;}
 
-  get types() {return this._types}
+  get types() {return this._types;}
 
-  get charged_moves() {return this._charged_moves}
-  get fast_moves() {return this._fast_moves}
-  get elite_charged_moves() {return this._elite_charged_moves}
-  get elite_fast_moves() {return this._elite_fast_moves}
+  get charged_moves() {return this._charged_moves;}
+  get fast_moves() {return this._fast_moves;}
+  get elite_charged_moves() {return this._elite_charged_moves;}
+  get elite_fast_moves() {return this._elite_fast_moves;}
   
   toString() {return `[
     pokemon_id = [${this.pokemon_id},\n
@@ -41,14 +41,19 @@ class Pokemon{
     fast_moves = [${this.fast_moves}],\n
     elite_charged_moves = [${this.elite_charged_moves}],\n
     elite_fast_moves = [${this.elite_fast_moves}]\n
-  ]`}
+  ]`;}
 
 }
 
-import_pokemon(){
-  var i = 0;
-  for(pokemon in pokemon){
-    var pok = new Pokemon(pokemon_id,pokemon_name,base_defense,base_attack,base_stamina,types,charged_moves,fast_moves,elite_charged_moves,elite_fast_moves);
-    console.log(pok.toString());
+function import_pokemon(){
+  for(let pok of pokemon){
+  
+    if(pok.form == "Normal"){
+      var imp_pokemon = new Pokemon(pok.pokemon_id,pok.pokemon_name,pok.base_defense,pok.base_attack,pok.base_stamina,"jnvreu","rmkmkb","oufrh","ejrf","uer");
+      console.log(imp_pokemon.toString());
+    }
+    
   }
 }
+
+console.log(import_pokemon());
