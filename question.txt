@@ -11,3 +11,9 @@ Pokemon a :
     -fast_moves
     -elite_charged_moves
     -elite_fast_moves
+
+Types : 
+
+1) 
+Type a :
+    
