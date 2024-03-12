@@ -13,4 +13,3 @@ class Type{
 
     toString() {return `Type : ${this.nom}`}
 }
-
