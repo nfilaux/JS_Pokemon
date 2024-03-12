@@ -1,12 +1,3 @@
-import * as charged_moves from "../../JSON/charged_moves.js";
-import * as cp_multiplier from "../../JSON/cp_multiplier.js";
-import * as fast_moves from "../../JSON/fast_moves.js";
-import * as generation from "../../JSON/generation.js";
-import * as pokemon_moves from "../../JSON/pokemon_moves.js";
-import * as pokemon_type from "../../JSON/pokemon_type.js";
-import * as pokemon from "../../JSON/pokemon.js";
-import * as type_effectiveness from "../../JSON/type_effectiveness.js";
-
 class Pokemon{
 
 	constructor (pokemon_id, pokemon_name, base_defense, base_attack, base_stamina, types, charged_moves, fast_moves, elite_charged_moves, elite_fast_moves) {
@@ -52,10 +43,12 @@ class Pokemon{
     elite_fast_moves = [${this.elite_fast_moves}]\n
   ]`}
 
-  import_pokemon(){
-    var i = 0;
-    for(pokemon in pokemon){
-      var pok = new Pokemon(pokemon_id,pokemon_name,base_defense,base_attack,base_stamina,types,charged_moves,fast_moves,elite_charged_moves,elite_fast_moves);
-    }
+}
+
+import_pokemon(){
+  var i = 0;
+  for(pokemon in pokemon){
+    var pok = new Pokemon(pokemon_id,pokemon_name,base_defense,base_attack,base_stamina,types,charged_moves,fast_moves,elite_charged_moves,elite_fast_moves);
+    console.log(pok.toString());
   }
 }
