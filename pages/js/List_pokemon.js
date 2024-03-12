@@ -4,4 +4,6 @@ class List_pokemon{
     }
 
     get all_pokemon(){return this._all_pokemon}
+
 }
+
