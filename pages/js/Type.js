@@ -14,10 +14,3 @@ class Type{
     toString() {return `Type : ${this.nom}`}
 }
 
-
-
-let date = JSON.parse(type_effectiveness);
-
-t1 = new Type("Bug",);
-
-console.log(data);
