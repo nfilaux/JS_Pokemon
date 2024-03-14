@@ -1,7 +1,7 @@
 class Type{
     constructor(nom, effectiveness){
         this._nom = nom;
-        this._effectiveness;
+        this._effectiveness = effectiveness;
     }
 
     get nom() {return this._nom}
