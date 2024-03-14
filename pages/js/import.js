@@ -13,16 +13,25 @@ function import_pokemon(){
     obj_type = new Type(nom_type, type_effectiveness[nom_type]);
     tab_types.push(obj_type);
   }
+  Type.all_types = tab_types;
 
   for(let pok of pokemon){
 
     if(pok.form == "Normal"){
-      let imp_pokemon = new Pokemon(pok.pokemon_id,pok.pokemon_name,pok.base_defense,pok.base_attack,pok.base_stamina,"aaa","rmkmkb","oufrh","ejrf","uer");
+      types = null;
+      for(let poke_t of pokemon_types){
+        if(poke_t.form == "Normal" && poke_t.pokemon_id == pok.pokemon_id){
+          types = poke_t.type
+        }
+      }
+
+      let imp_pokemon = new Pokemon(pok.pokemon_id,pok.pokemon_name,pok.base_defense,pok.base_attack,pok.base_stamina,type,"rmkmkb","oufrh","ejrf","uer");
       tab_poke.push({ pokemon_id:imp_pokemon});
     }
   }
-  var all_pok = new List_pokemon(tab_poke);
-  console.log(all_pok);
-  console.log(tab_types);
+  Pokemon.all_pokemon = tab_poke;
+
+  console.log(Type.all_types);
+  console.log(Pokemon.all_pokemon);
 
 }

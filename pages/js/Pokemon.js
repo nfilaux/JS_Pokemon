@@ -1,5 +1,5 @@
 class Pokemon{
-
+  static all_pokemon;
 	constructor (pokemon_id, pokemon_name, base_defense, base_attack, base_stamina, types, charged_moves, fast_moves, elite_charged_moves, elite_fast_moves) {
 		this._pokemon_id = pokemon_id
     this._pokemon_name = pokemon_name
@@ -29,6 +29,10 @@ class Pokemon{
   get fast_moves() {return this._fast_moves;}
   get elite_charged_moves() {return this._elite_charged_moves;}
   get elite_fast_moves() {return this._elite_fast_moves;}
+
+  static get all_pokemon(){return Pokemon.all_pokemon}
+
+  static set all_pokemon(all_poke){Pokemon.all_pokemon = all_poke}
   
   toString() {return `[
     pokemon_id = ${this.pokemon_id},\n
@@ -44,4 +48,3 @@ class Pokemon{
   ]`;}
 
 }
-
