@@ -1,24 +1,28 @@
 function import_pokemon(){
+  let tab_types = [];
+  let tab_nom_types = [];
+  let tab_poke = [];
+  let obj_type;
+
+
+  for(let type in type_effectiveness){
+    tab_nom_types.push(type);
+  }
+
+  for(let nom_type of tab_nom_types){
+    obj_type = new Type(nom_type, type_effectiveness[nom_type]);
+    tab_types.push(obj_type);
+  }
+
   for(let pok of pokemon){
-  
+
     if(pok.form == "Normal"){
-      for(let pok_move of pokemon_moves){
-        if(pok_move.form == "Normal"){
-          if(pok_move.pokemon_id == pok.pokemon_id){
-            for(let pok_types of pokemon_types){
-              if(pok_types.form == "Normal"){
-                if(pok_types.pokemon_id == pok.pokemon_id){
-                  var imp_pokemon = new Pokemon(pok.pokemon_id,pok.pokemon_name,pok.base_defense,pok.base_attack,pok.base_stamina,pok_types.type,pok_move.charged_moves,pok_move.fast_moves,pok_move.elite_charged_moves,pok_move.elite_fast_moves);
-                  console.log(imp_pokemon.toString());
-                  var all_pok = new List_pokemon(imp_pokemon);
-                }
-              }
-            }
-          }
-        }
-      }
+      let imp_pokemon = new Pokemon(pok.pokemon_id,pok.pokemon_name,pok.base_defense,pok.base_attack,pok.base_stamina,"aaa","rmkmkb","oufrh","ejrf","uer");
+      tab_poke.push({ pokemon_id:imp_pokemon});
     }
   }
-}
+  var all_pok = new List_pokemon(tab_poke);
+  console.log(all_pok);
+  console.log(tab_types);
 
-console.log(import_pokemon());
+}
