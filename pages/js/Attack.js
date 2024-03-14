@@ -2,32 +2,37 @@ class Attack{
 
     static all_attack;
 
-    constructor(id ,nom , charged_moves,fast_moves,elite_charged_moves,elite_fast_moves){
+    constructor(id ,nom,duration,energy_delta,power,stamina_loss_scaler,type){
         this._id = id;
-        this._nom = nom;
-        this._charged_moves =charged_moves;
-        this._fast_moves = fast_moves;
-        this._elite_charged_moves = elite_charged_moves;
-        this._elite_fast_moves = elite_fast_moves;
+        this._nom =nom;
+        this._duration =duration;
+        this._energy_delta =energy_delta;
+        this._power =power;
+        this._stamina_loss_scaler =stamina_loss_scaler;
+        this._type =type;
+
     }
 
     get id() {return this._id}
     get nom() {return this._nom}
-    get charged_moves() {return this._charged_moves}
-    get fast_moves() {return this._fast_moves}
-    get elite_charged_moves() {return this._elite_charged_moves}
-    get elite_fast_moves() {return this._elite_fast_moves}
+    get duration() {return this._duration}
+    get energy_delta() {return this._energy_delta}
+    get power() {return this._power}
+    get stamina_loss_scaler() {return this._stamina_loss_scaler}
+    get type() {return this._type}
 
-    get all_attack(){return this.all_attack}
+    static get all_attack(){return Attack.this.all_attack}
 
-    set all_attack(all_attack){ this.all_attack = all_attack}
+    static set all_attack(all_at){ Attack.all_attack = all_at}
 
     toString(){
         return `id : ${this.id}\n
                 nom : ${this.nom}\n
-                charged_moves : ${this.charged_moves}\n
-                fast_moves : ${this.fast_moves}\n
-                elite_charged_moves : ${this.elite_charged_moves}\n
-                elite_fast_moves : ${this.elite_fast_moves}\n`
+                duration : ${this.duration}\n
+                energy_delta : ${this.energy_delta}\n
+                power : ${this.power}\n
+                stamina_loss_scaler : ${this.stamina_loss_scaler}\n
+                type : ${this.type}\n
+                `
     }
 }

@@ -4,10 +4,22 @@ function import_pokemon(){
   let tab_poke = {};
   let obj_type;
 
+  let tab_attak_c = {};
+  let tab_id_attak_c = [];
+  let tab_attak_f = {};
+  let tab_id_attak_f = [];
+  let obj_attak_c;
+  let obj_attak_f;
+
   // met dans un tableau tout les types
   for(let type in type_effectiveness){
     tab_nom_types.push(type);
   }
+
+  for(let attack_c in charged_moves){
+    tab_id_attak_c.push(attack_c);
+  }
+
   // création de all_types
   for(let nom_type of tab_nom_types){
     obj_type = new Type(nom_type, type_effectiveness[nom_type]);
@@ -15,6 +27,10 @@ function import_pokemon(){
   }
   Type.all_types = tab_types;
 
+  for(let attack_c in tab_id_attak_c){
+    obj_attak_c = new Attack(attack_c.move_id,tab_id_attak_c[attack_c.name,attack_c.duration,attack_c.energy_delta,attack_c.power,attack_c.stamina_loss_scaler,attack_c.type]);
+    tab_attak_c[attack_c.move_id] = obj_attak_c;
+  }
 
   for(let pok of pokemon){
 
