@@ -4,16 +4,17 @@ function import_pokemon(){
   let tab_poke = {};
   let obj_type;
 
-
+  // met dans un tableau tout les types
   for(let type in type_effectiveness){
     tab_nom_types.push(type);
   }
-
+  // création de all_types
   for(let nom_type of tab_nom_types){
     obj_type = new Type(nom_type, type_effectiveness[nom_type]);
     tab_types[nom_type] = obj_type;
   }
   Type.all_types = tab_types;
+
 
   for(let pok of pokemon){
 

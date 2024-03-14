@@ -4,7 +4,7 @@ class Attack{
 
     constructor(id ,nom , charged_moves,fast_moves,elite_charged_moves,elite_fast_moves){
         this._id = id;
-        this._nom =nom;
+        this._nom = nom;
         this._charged_moves =charged_moves;
         this._fast_moves = fast_moves;
         this._elite_charged_moves = elite_charged_moves;
