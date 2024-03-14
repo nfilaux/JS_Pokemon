@@ -45,7 +45,20 @@ function import_pokemon(){
       for(let t of types_raw){
         types.push(Type.all_types[t])
       }
-      let imp_pokemon = new Pokemon(pok.pokemon_id,pok.pokemon_name,pok.base_defense,pok.base_attack,pok.base_stamina,types,"rmkmkb","oufrh","ejrf","uer");
+
+      attack_raw = null;
+      for(let poke_t of pokemon_moves){
+        if(poke_t.form == "Normal" && poke_t.pokemon_id == pok.pokemon_id){
+          attack_raw = poke_t.move_id
+        }
+      }
+      attaks = []
+      for(let t of attack_raw){
+        attaks.push(Attack.all_attack[t]);
+      }
+
+
+      let imp_pokemon = new Pokemon(pok.pokemon_id,pok.pokemon_name,pok.base_defense,pok.base_attack,pok.base_stamina,types,attaks,"oufrh","ejrf","uer");
       //tab_poke.push({ pokemon_id:imp_pokemon});
       tab_poke[pok.pokemon_id] = imp_pokemon;
     }
