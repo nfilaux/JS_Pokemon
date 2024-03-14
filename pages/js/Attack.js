@@ -1,16 +1,17 @@
 class Attack{
 
-    static all_attack;
+    static all_attacks;
 
-    constructor(id ,nom,duration,energy_delta,power,stamina_loss_scaler,type){
+    constructor(id ,nom,duration,energy_delta,power,stamina_loss_scaler,type, critical_chance, form){
         this._id = id;
-        this._nom =nom;
-        this._duration =duration;
-        this._energy_delta =energy_delta;
+        this._nom = nom;
+        this._duration = duration;
+        this._energy_delta = energy_delta;
         this._power =power;
-        this._stamina_loss_scaler =stamina_loss_scaler;
-        this._type =type;
-
+        this._stamina_loss_scaler = stamina_loss_scaler;
+        this._type = type;
+        this._critical_chance = critical_chance
+        this._form = form
     }
 
     get id() {return this._id}
@@ -21,9 +22,8 @@ class Attack{
     get stamina_loss_scaler() {return this._stamina_loss_scaler}
     get type() {return this._type}
 
-    static get all_attack(){return Attack.this.all_attack}
-
-    static set all_attack(all_at){ Attack.all_attack = all_at}
+    static get all_attacks(){return Attack.this.all_attack}
+    static set all_attacks(all_at){ Attack.all_attack = all_at}
 
     toString(){
         return `id : ${this.id}\n
