@@ -18,7 +18,6 @@ function import_pokemon(){
         }
       }
     }
-    
   }
 }
 
