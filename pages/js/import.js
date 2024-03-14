@@ -26,17 +26,13 @@ function import_pokemon(){
       }
       types = []
       for(let t of types_raw){
-        types += Type.all_types[t]
+        types.push(Type.all_types[t])
       }
-      
       let imp_pokemon = new Pokemon(pok.pokemon_id,pok.pokemon_name,pok.base_defense,pok.base_attack,pok.base_stamina,types,"rmkmkb","oufrh","ejrf","uer");
       //tab_poke.push({ pokemon_id:imp_pokemon});
       tab_poke[pok.pokemon_id] = imp_pokemon;
     }
   }
   Pokemon.all_pokemon = tab_poke;
-
-  console.log(Type.all_types);
-  console.log(Pokemon.all_pokemon);
-
 }
+import_pokemon()
