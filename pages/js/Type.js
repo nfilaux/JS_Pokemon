@@ -1,5 +1,5 @@
 class Type{
-    static all_types;
+    static _all_types;
 
     constructor(nom, effectiveness){
         this._nom = nom;
@@ -8,8 +8,8 @@ class Type{
 
     get nom() {return this._nom}
     get type() {return this._nom}
-    static get all_types(){return Type.all_types}
-    static set all_types(all_t){Type.all_types = all_t}
+    static get all_types(){return Type._all_types}
+    static set all_types(all_t){Type._all_types = all_t}
 
     effectiveness(type){
         return this.effectiveness[type];
