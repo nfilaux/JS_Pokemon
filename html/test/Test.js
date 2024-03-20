@@ -9,21 +9,35 @@ function getPokemonsByType(typeName){
             }
         }
     }
-    return all_pokemon_type;
+    return all_pokemons_type;
 }
 
 function getPokemonsByAttack(attackName){
-    let all_pokemon_attack = [];
-
+    all_pokemons_attack = [];
     for (pok in Pokemon.all_pokemons){
-        /*for(type in Pokemon.all_pokemon[pok]._types ){
-            //console.log(Pokemon.all_pokemon[pok]._types[type].nom);
-            if (Pokemon.all_pokemon[pok]._types[type].nom == typeName){
-                all_pokemon_attack.push(Pokemon.all_pokemon[pok]); 
+        //console.log(Pokemon.all_pokemons[pok]._attacks);
+        for(attack in Pokemon.all_pokemons[pok]._attacks){
+            //console.log(Pokemon.all_pokemons[pok]._attacks[attack].nom);
+            if (Pokemon.all_pokemons[pok]._attacks[attack].nom == attackName){
+                all_pokemons_attack.push(Pokemon.all_pokemons[pok]); 
             }
-        }*/
+        }
     }
-    return all_pokemon_attack;
+    return all_pokemons_attack;
+}
+
+function sortPokemonByName(){
+    for (pok in Pokemon.all_pokemons){
+        //console.log(Pokemon.all_pokemons[pok]);
+
+        for(sort in Pokemon.all_pokemons[pok]._pokemon_name){
+            console.log(Pokemon.all_pokemons[pok]._pokemon_name);
+            /*if (Pokemon.all_pokemons[pok]._pokemon_name == attackName){
+                all_pokemons_attack.push(Pokemon.all_pokemons[pok]); 
+            }*/
+        }
+    }
+    
 }
 
 function getAttacksByType(typeName){
