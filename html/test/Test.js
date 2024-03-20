@@ -1,34 +1,42 @@
 function getPokemonsByType(typeName){
-    import_pokemon();
-    all_pokemon_type = [];
-    for (pok in Pokemon.all_pokemon){
+    all_pokemons_type = [];
+    for (pok in Pokemon.all_pokemons){
         //console.log(Pokemon.all_pokemon[pok]._types);
-        for(type in Pokemon.all_pokemon[pok]._types ){
+        for(type in Pokemon.all_pokemons[pok]._types ){
             //console.log(Pokemon.all_pokemon[pok]._types[type].nom);
-            if (Pokemon.all_pokemon[pok]._types[type].nom == typeName){
-                all_pokemon_type.push(Pokemon.all_pokemon[pok]); 
+            if (Pokemon.all_pokemons[pok]._types[type].nom == typeName){
+                all_pokemons_type.push(Pokemon.all_pokemons[pok]); 
             }
         }
     }
-    return all_pokemon_type;
+    return all_pokemons_type;
 }
 
 function getPokemonsByAttack(attackName){
-    import_pokemon();
-    all_pokemon_attack = [];
-
-    for (pok in Pokemon.all_pokemon){
-        console.log(Pokemon.all_pokemon[pok]);
-        /*for(type in Pokemon.all_pokemon[pok]._types ){
-            //console.log(Pokemon.all_pokemon[pok]._types[type].nom);
-            if (Pokemon.all_pokemon[pok]._types[type].nom == typeName){
-                all_pokemon_attack.push(Pokemon.all_pokemon[pok]); 
+    all_pokemons_attack = [];
+    for (pok in Pokemon.all_pokemons){
+        //console.log(Pokemon.all_pokemons[pok]._attacks);
+        for(attack in Pokemon.all_pokemons[pok]._attacks){
+            //console.log(Pokemon.all_pokemons[pok]._attacks[attack].nom);
+            if (Pokemon.all_pokemons[pok]._attacks[attack].nom == attackName){
+                all_pokemons_attack.push(Pokemon.all_pokemons[pok]); 
             }
-        }*/
+        }
     }
-    return all_pokemon_attack;
+    return all_pokemons_attack;
 }
 
-function getAttacksByType(typeName){
+function sortPokemonByName(){
+    all_pokemons_sort = [];
+    for (pok in Pokemon.all_pokemons){
+        //console.log(Pokemon.all_pokemons[pok]);
+
+        for(sort in Pokemon.all_pokemons[pok]._pokemon_name){
+            console.log(Pokemon.all_pokemons[pok]._pokemon_name);
+            /*if (Pokemon.all_pokemons[pok]._pokemon_name == attackName){
+                all_pokemons_attack.push(Pokemon.all_pokemons[pok]); 
+            }*/
+        }
+    }
     
 }
