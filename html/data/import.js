@@ -81,3 +81,4 @@ function import_pokemon(){
   Pokemon.all_pokemon = tab_poke;
 }
 import_pokemon();
+console.log(Pokemon.all_pokemon)
