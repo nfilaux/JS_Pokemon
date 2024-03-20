@@ -75,7 +75,6 @@ function import_pokemon(){
       }
       
       imp_pokemon = new Pokemon(pok.pokemon_id,pok.pokemon_name,pok.base_defense,pok.base_attack,pok.base_stamina,types,moves);
-      //tab_poke.push({ pokemon_id:imp_pokemon});
       tab_poke[pok.pokemon_id] = imp_pokemon;
     }
   }
