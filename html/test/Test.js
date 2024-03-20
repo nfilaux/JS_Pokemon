@@ -27,7 +27,6 @@ function getPokemonsByAttack(attackName){
 }
 
 function sortPokemonByName(){
-    all_pokemons_sort = [];
     for (pok in Pokemon.all_pokemons){
         //console.log(Pokemon.all_pokemons[pok]);
 
