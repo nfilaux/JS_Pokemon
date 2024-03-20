@@ -27,17 +27,17 @@ function getPokemonsByAttack(attackName){
 }
 
 function sortPokemonByName(){
+    let all_pokemons_sort = [];
     for (pok in Pokemon.all_pokemons){
-        //console.log(Pokemon.all_pokemons[pok]);
-
-        for(sort in Pokemon.all_pokemons[pok]._pokemon_name){
-            console.log(Pokemon.all_pokemons[pok]._pokemon_name);
-            /*if (Pokemon.all_pokemons[pok]._pokemon_name == attackName){
-                all_pokemons_attack.push(Pokemon.all_pokemons[pok]); 
-            }*/
-        }
+        all_pokemons_sort.push(Pokemon.all_pokemons[pok]);
+       
     }
-    
+    all_pokemons_sort.sort(function (a, b) {
+        var nomA = a._pokemon_name.toUpperCase();
+        var nomB = b._pokemon_name.toUpperCase();
+        return (nomA < nomB) ? -1 : (nomA > nomB) ? 1 : 0;
+    });
+    console.log(all_pokemons_sort);
 }
 
 function getAttacksByType(typeName){
