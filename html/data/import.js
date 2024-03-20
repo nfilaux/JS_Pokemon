@@ -68,17 +68,24 @@ function import_pokemon(){
           moves_raw.push(poke_m.charged_moves.concat(poke_m.elite_charged_moves, poke_m.fast_moves, poke_m.elite_fast_moves))
         }
       }
+      
 
       moves = []
-      for(let m of moves_raw){
-        moves.push(Attack.all_attacks[m])
+      for(let m of moves_raw[0]){
+        let id_attack;
+        for(attack in Attack.all_attacks){
+          if(Attack.all_attacks[attack].nom == m){
+            id_attack = Attack.all_attacks[attack].id
+          }
+        }
+        
+        moves.push(Attack.all_attacks[id_attack])
       }
       
       imp_pokemon = new Pokemon(pok.pokemon_id,pok.pokemon_name,pok.base_defense,pok.base_attack,pok.base_stamina,types,moves);
       tab_poke[pok.pokemon_id] = imp_pokemon;
     }
   }
-  Pokemon.all_pokemon = tab_poke;
+  Pokemon.all_pokemons = tab_poke;
 }
 import_pokemon();
-console.log(Pokemon.all_pokemon)

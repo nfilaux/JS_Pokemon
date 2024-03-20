@@ -1,5 +1,5 @@
 class Pokemon{
-  static _all_pokemon;
+  static _all_pokemons;
 	constructor (pokemon_id, pokemon_name, base_defense, base_attack, base_stamina, types, attacks) {
 		this._pokemon_id = pokemon_id
     this._pokemon_name = pokemon_name
@@ -25,9 +25,9 @@ class Pokemon{
   get attacks() {return this._attacks;}
 
 
-  static get all_pokemon(){return Pokemon._all_pokemon}
+  static get all_pokemons(){return Pokemon._all_pokemons}
 
-  static set all_pokemon(all_poke){Pokemon._all_pokemon = all_poke}
+  static set all_pokemons(all_poke){Pokemon._all_pokemons = all_poke}
   
   toString() {return `[
     pokemon_id = ${this.pokemon_id},\n
