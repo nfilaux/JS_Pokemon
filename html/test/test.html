@@ -29,9 +29,20 @@
 
 </html>
 <script>
-    console.log(Pokemon.all_pokemons)
     console.log(Attack.all_attacks)
-    console.log(getPokemonsByType("Fire"))
-    console.log(getPokemonsByAttack("Sludge Bomb"))
+    var items = [
+  { name: "Edward", value: 21 },
+  { name: "Sharpe", value: 37 },
+  { name: "And", value: 45 },
+  { name: "The", value: -12 },
+  { name: "Magnetic", value: 13 },
+  { name: "Zeros", value: 37 },
+    ];
+
+    items.sort(function (a, b) {
+        return a.name > b.name;
+    });
+    console.log(items)
+
 
 </script>
