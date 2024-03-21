@@ -39,3 +39,15 @@ function sortPokemonByName(){
     });
     console.log(all_pokemons_sort);
 }
+
+function sortPokemonByStamina(){
+    let all_pokemons_sort = [];
+    for (pok in Pokemon.all_pokemons){
+        all_pokemons_sort.push(Pokemon.all_pokemons[pok]);
+       
+    }
+    all_pokemons_sort.sort(function (a, b) {
+        return (a._base_stamina < b._base_stamina) ? -1 : (a._base_stamina > b._base_stamina) ? 1 : 0;
+    });
+    console.log(all_pokemons_sort);
+}
