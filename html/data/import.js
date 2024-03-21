@@ -76,6 +76,7 @@ function import_pokemon(){
         for(attack in Attack.all_attacks){
           if(Attack.all_attacks[attack].nom == m){
             id_attack = Attack.all_attacks[attack].id
+            break;
           }
         }
         

@@ -21,7 +21,7 @@ Type a :
 
 
 
-
+les pokemon dont le coeff est le plus grand (donc les pok ont tous les meme coeff dans la liste)
 
 
 
