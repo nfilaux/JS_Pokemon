@@ -46,7 +46,6 @@ function import_pokemon(){
   }
   Attack.all_attacks = Object.assign({}, tab_attak_f, tab_attak_c);
 
-
   for(let pok of pokemon){
 
     if(pok.form == "Normal"){
@@ -69,7 +68,6 @@ function import_pokemon(){
         }
       }
       
-
       moves = []
       for(let m of moves_raw[0]){
         let id_attack;
