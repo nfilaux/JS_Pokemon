@@ -46,15 +46,15 @@
         // Fonction pour exécuter les tests
         function runTest(testFunctionName) {
 
-            // Récupérer argument pour la fonction
+            // Récupére argument pour la fonction
             const argument = document.getElementById('argument').value.trim();
 
-            // Effacer les anciennes données dans la console
+            // Efface les anciennes données dans la console
             console.clear()
             // Exécuter le test avec l'argument spécifié
             const result = window[testFunctionName](argument);
             
-            // Afficher le résultat sur la console et sur la page
+            // Affiche le résultat sur la console et sur la page
             console.table(result);
         }
     </script>
