@@ -1,11 +1,11 @@
 function getPokemonsByType(typeName){
-    let all_pokemon_type = [];
+    let all_pokemons_type = [];
     for (pok in Pokemon.all_pokemons){
         //console.log(Pokemon.all_pokemon[pok]._types);
         for(type in Pokemon.all_pokemons[pok]._types ){
             //console.log(Pokemon.all_pokemon[pok]._types[type].nom);
             if (Pokemon.all_pokemons[pok]._types[type].nom == typeName){
-                all_pokemon_type.push(Pokemon.all_pokemons[pok]); 
+                all_pokemons_type.push(Pokemon.all_pokemons[pok]); 
             }
         }
     }
@@ -13,7 +13,7 @@ function getPokemonsByType(typeName){
 }
 
 function getPokemonsByAttack(attackName){
-    all_pokemons_attack = [];
+    let all_pokemons_attack = [];
     for (pok in Pokemon.all_pokemons){
         //console.log(Pokemon.all_pokemons[pok]._attacks);
         for(attack in Pokemon.all_pokemons[pok]._attacks){
@@ -30,27 +30,24 @@ function sortPokemonByName(){
     let all_pokemons_sort = [];
     for (pok in Pokemon.all_pokemons){
         all_pokemons_sort.push(Pokemon.all_pokemons[pok]);
-       
     }
     all_pokemons_sort.sort(function (a, b) {
         var nomA = a._pokemon_name.toUpperCase();
         var nomB = b._pokemon_name.toUpperCase();
         return (nomA < nomB) ? -1 : (nomA > nomB) ? 1 : 0;
     });
-    console.log(all_pokemons_sort);
+    return all_pokemons_sort;
 }
 
 function sortPokemonByStamina(){
     let all_pokemons_sort = [];
     for (pok in Pokemon.all_pokemons){
-        all_pokemons_sort.push(Pokemon.all_pokemons[pok]);
-       
+        all_pokemons_sort.push(Pokemon.all_pokemons[pok]);  
     }
     all_pokemons_sort.sort(function (a, b) {
-        return (a._base_stamina < b._base_stamina) ? -1 : (a._base_stamina > b._base_stamina) ? 1 : 0;
+        return (a._base_stamina > b._base_stamina) ? -1 : (a._base_stamina < b._base_stamina) ? 1 : 0;
     });
-    console.log(all_pokemons_sort);
-
+    return all_pokemons_sort;
 }
 
 function getAttacksByType(typeName){
@@ -83,6 +80,46 @@ function getWeakestEnemies(attack){
     return 0;
 }
 
-function getBestAttackTypesForEnemy(name){
-    return 0;
+function getBestAttackTypesForEnemy(name) {
+    // Obtenir les Pokémon correspondant au nom donné
+    const pokemons = getPokemonsByType(name);
+
+    // Initialiser un objet pour stocker les attaques les plus faibles par type d'ennemi
+    const weakestAttacksByType = {};
+
+    // Parcourir les Pokémon
+    for (const pokemon of pokemons) {
+        // Récupérer les types du Pokémon
+        const types = pokemon._types.map(type => type.nom);
+
+        // Parcourir les types du Pokémon
+        for (const type of types) {
+            // Obtenir les attaques les plus faibles pour ce type
+            const weakestAttacks = getWeakestEnemies(type);
+
+            // Mettre à jour l'objet weakestAttacksByType avec les attaques les plus faibles
+            if (!weakestAttacksByType[type]) {
+                weakestAttacksByType[type] = weakestAttacks;
+            } else {
+                weakestAttacksByType[type] = weakestAttacksByType[type].concat(weakestAttacks.filter(attack => !weakestAttacksByType[type].includes(attack)));
+            }
+        }
+    }
+
+    // Compter le nombre d'occurrences de chaque attaque dans weakestAttacksByType
+    const attackCounts = {};
+    for (const type in weakestAttacksByType) {
+        for (const attack of weakestAttacksByType[type]) {
+            if (!attackCounts[attack]) {
+                attackCounts[attack] = 1;
+            } else {
+                attackCounts[attack]++;
+            }
+        }
+    }
+
+    // Trier les attaques par le nombre d'occurrences décroissant
+    const sortedAttacks = Object.keys(attackCounts).sort((a, b) => attackCounts[b] - attackCounts[a]);
+
+    return sortedAttacks;
 }
