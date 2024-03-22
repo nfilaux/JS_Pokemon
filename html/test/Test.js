@@ -50,6 +50,9 @@ function sortPokemonByStamina(){
         return (a._base_stamina < b._base_stamina) ? -1 : (a._base_stamina > b._base_stamina) ? 1 : 0;
     });
     console.log(all_pokemons_sort);
+
+}
+
 function getAttacksByType(typeName){
     let all_attack_by_type = [];
     for(current in Attack.all_attacks){
@@ -81,5 +84,5 @@ function getWeakestEnemies(attack){
 }
 
 function getBestAttackTypesForEnemy(name){
-    return 0;
+    return 0
 }
