@@ -109,45 +109,5 @@ function getWeakestEnemies(attack){
 }
 
 function getBestAttackTypesForEnemy(name) {
-    // Obtenir les Pokémon correspondant au nom donné
-    const pokemons = getPokemonsByType(name);
-
-    // Initialiser un objet pour stocker les attaques les plus faibles par type d'ennemi
-    const weakestAttacksByType = {};
-
-    // Parcourir les Pokémon
-    for (const pokemon of pokemons) {
-        // Récupérer les types du Pokémon
-        const types = pokemon._types.map(type => type.nom);
-
-        // Parcourir les types du Pokémon
-        for (const type of types) {
-            // Obtenir les attaques les plus faibles pour ce type
-            const weakestAttacks = getWeakestEnemies(type);
-
-            // Mettre à jour l'objet weakestAttacksByType avec les attaques les plus faibles
-            if (!weakestAttacksByType[type]) {
-                weakestAttacksByType[type] = weakestAttacks;
-            } else {
-                weakestAttacksByType[type] = weakestAttacksByType[type].concat(weakestAttacks.filter(attack => !weakestAttacksByType[type].includes(attack)));
-            }
-        }
-    }
-
-    // Compter le nombre d'occurrences de chaque attaque dans weakestAttacksByType
-    const attackCounts = {};
-    for (const type in weakestAttacksByType) {
-        for (const attack of weakestAttacksByType[type]) {
-            if (!attackCounts[attack]) {
-                attackCounts[attack] = 1;
-            } else {
-                attackCounts[attack]++;
-            }
-        }
-    }
-
-    // Trier les attaques par le nombre d'occurrences décroissant
-    const sortedAttacks = Object.keys(attackCounts).sort((a, b) => attackCounts[b] - attackCounts[a]);
-
-    return sortedAttacks;
+    return 0;
 }
