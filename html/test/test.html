@@ -1,32 +1,64 @@
 <!DOCTYPE html>
-
-<script src="../data/charged_moves.js"></script>
-<script src="../data/cp_multiplier.js"></script>
-<script src="../data/fast_moves.js"></script>
-<script src="../data/generation.js"></script>
-<script src="../data/pokemon_moves.js"></script>
-<script src="../data/pokemon_type.js"></script>
-<script src="../data/pokemons.js"></script>
-<script src="../data/type_effectiveness.js"></script>
-<script src="../data/Pokemon.js"></script>
-<script src="../data/Type.js"></script>
-<script src="../data/Attack.js"></script>
-<script src="../data/import.js"></script>
-<script src="./Test.js"></script>
-
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon</title>
-    
+    <title>Tests Pokémon</title>
 </head>
 <body>
     <header>
-        
+        <h1>Tests Pokémon</h1>
     </header>
-</body>
+    <main>
+        <section>
+            <label for="argument">Argument:</label>
+            <input type="text" id="argument">
+        </section>
+        <section>
+            <h2>Tests</h2>
+            <ul>
+                <li><a href="#" onclick="runTest('getPokemonsByType')">Q1: getPokemonsByType</a></li>
+                <li><a href="#" onclick="runTest('getPokemonsByAttack')">Q2: getPokemonsByAttack</a></li>
+                <li><a href="#" onclick="runTest('getAttacksByType')">Q3: getAttacksByType</a></li>
+                <li><a href="#" onclick="runTest('sortPokemonByName')">Q4: sortPokemonByName</a></li>
+                <li><a href="#" onclick="runTest('sortPokemonByStamina')">Q5: sortPokemonByStamina</a></li>
+                <li><a href="#" onclick="runTest('getWeakestEnemies')">Q6: getWeakestEnemies</a></li>
+                <li><a href="#" onclick="runTest('getBestAttackTypesForEnemy')">Q7: getBestAttackTypesForEnemy</a></li>
+            </ul>
+        </section>
+    </main>
 
+    <script src="../data/charged_moves.js"></script>
+    <script src="../data/cp_multiplier.js"></script>
+    <script src="../data/fast_moves.js"></script>
+    <script src="../data/generation.js"></script>
+    <script src="../data/pokemon_moves.js"></script>
+    <script src="../data/pokemon_type.js"></script>
+    <script src="../data/pokemons.js"></script>
+    <script src="../data/type_effectiveness.js"></script>
+    <script src="../data/Pokemon.js"></script>
+    <script src="../data/Type.js"></script>
+    <script src="../data/Attack.js"></script>
+    <script src="../data/import.js"></script>
+    <script src="./Test.js"></script>
+
+    <script>
+        // Fonction pour exécuter les tests
+        function runTest(testFunctionName) {
+
+            // Récupére argument pour la fonction
+            const argument = document.getElementById('argument').value.trim();
+
+            // Efface les anciennes données dans la console
+            console.clear()
+            // Exécuter le test avec l'argument spécifié
+            const result = window[testFunctionName](argument);
+            
+            // Affiche le résultat sur la console et sur la page
+            console.table(result);
+        }
+    </script>
+</body>
 </html>
 <script>
     console.log(getBestAttackTypesForEnemy("Parasect"))
