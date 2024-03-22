@@ -26,6 +26,16 @@ function getPokemonsByAttack(attackName){
     return all_pokemons_attack;
 }
 
+function getAttacksByType(typeName){
+    let all_attack_by_type = [];
+    for(current in Attack.all_attacks){
+        if(Attack.all_attacks[current].type.nom == typeName){
+            all_attack_by_type.push(Attack.all_attacks[current]);
+        }
+    }
+    return all_attack_by_type;
+}
+
 function sortPokemonByName(){
     let all_pokemons_sort = [];
     for (pok in Pokemon.all_pokemons){
@@ -53,34 +63,52 @@ function sortPokemonByStamina(){
 
 }
 
-function getAttacksByType(typeName){
-    let all_attack_by_type = [];
-    for(current in Attack.all_attacks){
-        if(Attack.all_attacks[current].type.nom == typeName){
-            all_attack_by_type.push(Attack.all_attacks[current]);
-        }
-    }
-    return all_attack_by_type;
-}
-
-
 function getWeakestEnemies(attack){
     for(let current in Attack.all_attacks){
         if(Attack.all_attacks[current].nom == attack){
             var type_attack = Attack.all_attacks[current].type
+            break;
         }
-        break;
+        
     }
 
-    let tab_worst_types = []
+    let tab_best_types = []
     // ajout type simple
-    for(let type in Type.all_types){
-        tab_worst_types.push({'type': Type.all_types[type].nom , 'effec': type_attack.effectiveness(Type.all_types[type].nom)})
+
+    for(let type1 in Type.all_types){
+        tab_best_types.push({'type': [Type.all_types[type1].nom] , 'effec': type_attack.effectiveness(Type.all_types[type1].nom)})
+
+        for(let type2 in Type.all_types){
+            if(type1 != type2 && type1 > type2){
+                tab_best_types.push({'type': [Type.all_types[type1].nom, Type.all_types[type2].nom] , 'effec': type_attack.effectiveness(Type.all_types[type1].nom) * type_attack.effectiveness(Type.all_types[type2].nom)})
+            }
+        }
     }
-    console.log(type_attack);
 
+    tab_best_types.sort(function (a, b) {
+        return (a.effec > b.effec) ? -1 : (a.effec < b.effec) ? 1 : 0;
+    });
+    
+    var tab_best_ennemies = [];
+    var old = {}
+    var current = tab_best_types.shift()
+    while(tab_best_ennemies.length == 0 || current.effec == old){
+        for(let pok in Pokemon.all_pokemons){
+            var tab_pok_types = []
+            for(let pok_t of Pokemon.all_pokemons[pok].types){
+                tab_pok_types.push(pok_t.nom)
+            }
+            tab_pok_types = JSON.stringify(tab_pok_types)
+            if(tab_pok_types == JSON.stringify(current.type) || tab_pok_types == JSON.stringify(current.type.reverse())){
+                tab_best_ennemies.push(Pokemon.all_pokemons[pok]);
+            }
+            
+        }
+        old = current.effec;
+        current = tab_best_types.shift();
+    }
 
-    return 0;
+    return tab_best_ennemies;
 }
 
 function getBestAttackTypesForEnemy(name){
