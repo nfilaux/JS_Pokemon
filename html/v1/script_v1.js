@@ -56,11 +56,11 @@ for(let poke in Pokemon.all_pokemons){
     while(img_url.length < 3){
         img_url = '0' + img_url
     }
+    if(Pokemon.all_pokemons[poke].generation <= 7){
+        img_url = img_url + 'MS'
+    }
 
-    sprite.src = `../webp/sprites/${img_url}MS.webp`
+    sprite.src = `../webp/sprites/${img_url}.webp`
     img.appendChild(sprite)
     ligne.appendChild(img)
-
-
-
 }

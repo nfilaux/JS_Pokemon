@@ -89,7 +89,7 @@ function import_pokemon() {
             const pokemonList = generation[generationName];
             // Parcourir chaque Pokémon dans cette génération
             for (const pokemon of pokemonList) {
-                if (pokemon.name == pok.pokemon_name) {
+                if (pokemon.id == pok.pokemon_id) {
                     generationNumber = pokemon.generation_number;
                 }
             }
