@@ -1,12 +1,13 @@
 class Pokemon{
   static _all_pokemons;
-	constructor (pokemon_id, pokemon_name, base_defense, base_attack, base_stamina, types, attacks) {
+	constructor (pokemon_id, pokemon_name, base_defense, base_attack, base_stamina, generation, types, attacks) {
 		this._pokemon_id = pokemon_id
     this._pokemon_name = pokemon_name
 
     this._base_defense = base_defense
     this._base_attack = base_attack
     this._base_stamina = base_stamina
+    this._generation = generation
 
     this._types = types
 
