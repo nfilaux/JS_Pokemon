@@ -82,16 +82,24 @@ function import_pokemon() {
 
         moves.push(Attack.all_attacks[id_attack])
       }
-
-      generation = [];
-      for(let poke_t of generation){
-        if(poke_t.form == "Normal" && poke_t.pokemon_id == pok.pokemon_id){
-          generation = poke_t.generation_number
+      
+      generationNumber = []
+      for (const generationName in generation) {
+        if (generation.hasOwnProperty(generationName)) {
+            const pokemonList = generation[generationName];
+            // Parcourir chaque Pokémon dans cette génération
+            for (const pokemon of pokemonList) {
+                if (pokemon.name == pok.pokemon_name) {
+                    generationNumber = pokemon.generation_number;
+                }
+            }
         }
       }
       
+
+
       // Crée une instance de Pokémon avec les données récupérées.
-      imp_pokemon = new Pokemon(pok.pokemon_id, pok.pokemon_name, pok.base_defense, pok.base_attack, pok.base_stamina, types, moves);
+      imp_pokemon = new Pokemon(pok.pokemon_id, pok.pokemon_name, pok.base_defense, pok.base_attack, pok.base_stamina, generationNumber, types, moves);
       tab_poke[pok.pokemon_id] = imp_pokemon;
     }
   }

@@ -21,6 +21,7 @@ class Pokemon {
   get base_defense() { return this._base_defense; }
   get base_attack() { return this._base_attack; }
   get base_stamina() { return this._base_stamina; }
+  get generation() { return this._generation; }
 
   get types() { return this._types; }
 
@@ -37,6 +38,7 @@ class Pokemon {
     base_defense = ${this.base_defense},\n
     base_attack = ${this.base_attack},\n
     base_stamina = ${this.base_stamina},\n
+    base_stamina = ${this.generation},\n
     types = [${this.types}],\n
     charged_moves = [${this.charged_moves}],\n
     fast_moves = [${this.fast_moves}],\n
