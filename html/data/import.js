@@ -95,8 +95,6 @@ function import_pokemon() {
             }
         }
       }
-      
-
 
       // Crée une instance de Pokémon avec les données récupérées.
       imp_pokemon = new Pokemon(pok.pokemon_id, pok.pokemon_name, pok.base_defense, pok.base_attack, pok.base_stamina, generationNumber, types, moves);
