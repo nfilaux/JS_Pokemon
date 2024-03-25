@@ -3,7 +3,7 @@
 // Pokemon that are from that generation. 
 // Each Pokemon entry has its name, Pokemon ID, and generation number.
 
-let generation = {
+{
     "Generation 1": [
         {
             "generation_number": 1,
@@ -4483,6 +4483,31 @@ let generation = {
             "generation_number": 8,
             "id": 893,
             "name": "Zarude"
+},
+        {
+            "generation_number": 8,
+            "id": 894,
+            "name": "Regieleki"
+},
+        {
+            "generation_number": 8,
+            "id": 895,
+            "name": "Regidrago"
+},
+        {
+            "generation_number": 8,
+            "id": 896,
+            "name": "Blizzeval"
+},
+        {
+            "generation_number": 8,
+            "id": 897,
+            "name": "Spectreval"
+},
+        {
+            "generation_number": 8,
+            "id": 898,
+            "name": "Sylveroy"
 }
 ]
 }
