@@ -1,7 +1,31 @@
+/*
+● identifiant unique
+● nom
+● génération
+● types (liste des noms des types du Pokémon)
+● endurance (stamina)
+● points d’attaque de base
+● points de défense de base
+● image (en taille miniature, adaptée à la hauteur des autres champs
+d’information)
+*/
+
+console.log(Object.keys(Pokemon.all_pokemons).length)
 
 var body_table = document.getElementById('pokemonBody')
+var debut = parseInt(urlParams.get('page'))
+if(debut == undefined || debut == null){
+    var debut = 1
+}
+var total = 0
+var poke = debut
+const keys = Object.keys(Pokemon.all_pokemons)
 
-for(let poke in Pokemon.all_pokemons){
+while(total < 25 && poke <= keys[keys.length -1]){
+
+    if(Pokemon.all_pokemons[poke] != undefined && Pokemon.all_pokemons[poke] != null){
+    total++;
+
     let ligne = document.createElement('tr')
     body_table.appendChild(ligne)
 
@@ -45,11 +69,14 @@ for(let poke in Pokemon.all_pokemons){
     while(img_url.length < 3){
         img_url = '0' + img_url
     }
+    if(Pokemon.all_pokemons[poke].generation <= 7){
+        img_url = img_url + 'MS'
+    }
 
-    sprite.src = `../webp/sprites/${img_url}MS.webp`
+    sprite.src = `../webp/sprites/${img_url}.webp`
     img.appendChild(sprite)
     ligne.appendChild(img)
-
-
-
+   }
+   poke++;
+    
 }
