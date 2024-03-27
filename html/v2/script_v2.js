@@ -10,9 +10,22 @@
 d’information)
 */
 
-var body_table = document.getElementById('pokemonBody')
+console.log(Object.keys(Pokemon.all_pokemons).length)
 
-for(let poke in Pokemon.all_pokemons){
+var body_table = document.getElementById('pokemonBody')
+var debut = parseInt(urlParams.get('page'))
+if(debut == undefined || debut == null){
+    var debut = 1
+}
+var total = 0
+var poke = debut
+const keys = Object.keys(Pokemon.all_pokemons)
+
+while(total < 25 && poke <= keys[keys.length -1]){
+
+    if(Pokemon.all_pokemons[poke] != undefined && Pokemon.all_pokemons[poke] != null){
+    total++;
+
     let ligne = document.createElement('tr')
     body_table.appendChild(ligne)
 
@@ -63,18 +76,7 @@ for(let poke in Pokemon.all_pokemons){
     sprite.src = `../webp/sprites/${img_url}.webp`
     img.appendChild(sprite)
     ligne.appendChild(img)
+   }
+   poke++;
+    
 }
-
-// Récupérer les paramètres de l'URL
-const params = new URLSearchParams(window.location.search);
-
-// Récupérer la valeur actuelle du paramètre "page" et l'incrémenter de 1
-let page = params.get('page');
-page = page ? parseInt(page) + 1 : 2; // Si le paramètre n'existe pas, commencer à partir de la page 2
-
-// Mettre à jour les paramètres de l'URL
-params.set('page', page);
-
-// Mettre à jour l'URL sans recharger la page
-const newUrl = window.location.pathname + '?' + params.toString();
-history.pushState({}, '', newUrl);

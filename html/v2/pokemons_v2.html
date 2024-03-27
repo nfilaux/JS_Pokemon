@@ -25,13 +25,18 @@
             </tbody>
         </table>
     </div>
-    <div id="pagination">
-        <button id="prevButton">PRÉC</button>
-        <span id="pageInfo"></span>
-        <button id="nextButton">SUIV</button>
+    <form name="page_prec" id="page_prec" method="post" action="">
+        <input type="submit" name="precedent" value="PRÉC"/>
+    </form>
+    <span>Page ??/??</span>
+    <form name="page_suiv" id="page_suiv" method="post" action="">
+        <input type="submit" name="suivant" value="SUIV"/>
     </div>
 </body>
 </html>
+
+
+
 <script src="../data/charged_moves.js"></script>
 <script src="../data/cp_multiplier.js"></script>
 <script src="../data/fast_moves.js"></script>
@@ -44,4 +49,27 @@
 <script src="../data/Type.js"></script>
 <script src="../data/Attack.js"></script>
 <script src="../data/import.js"></script>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+</script>
 <script src="./script_v2.js"></script>
+<script>
+    var form_prec = document.getElementById('page_prec')
+    var form_suiv = document.getElementById('page_suiv')
+
+    var fin_ancien = urlParams.get('page')
+    if(fin_ancien == undefined || fin_ancien == null){
+        var fin_ancien = 1
+    }
+    
+    if(fin_ancien < 25){
+        form_prec.disabled = true;
+    }
+    if(Pokemon.all_pokemons.length >= poke){
+        form_suiv.disabled = true;
+    }
+
+    form_prec.action = `pokemons_v2.html?page=${parseInt() - 1}`
+    form_suiv.action = `pokemons_v2.html?page=${parseInt(poke)}`
+</script>
