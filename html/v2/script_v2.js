@@ -80,3 +80,29 @@ while(total < 25 && poke <= keys[keys.length -1]){
    poke++;
     
 }
+
+    var form_prec = document.getElementById('page_prec')
+    var form_suiv = document.getElementById('page_suiv')
+
+    var fin_ancien = urlParams.get('page')
+    if(fin_ancien == undefined || fin_ancien == null){
+        var fin_ancien = 1
+    }
+    
+    if(fin_ancien < 25){
+        document.getElementById("btn-prec").disabled = true;
+    }else{
+        document.getElementById("btn-prec").disabled = false;
+    }
+
+    console.log(poke)
+    console.log(keys[keys.length -1])
+    if(keys[keys.length -1] <= poke){
+        document.getElementById("btn-suiv").disabled = true;
+    }else{
+        document.getElementById("btn-suiv").disabled = false;
+    }
+    prec = parseInt(poke) - 25
+    prec2 = prec - 25
+    form_prec.action = `pokemons_v2.html?page=${prec2}`
+    form_suiv.action = `pokemons_v2.html?page=${parseInt(poke)}`

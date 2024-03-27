@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Pokémons</title>
+    <title>Liste des Pokémons v2</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <h1>Liste des Pokémons</h1>
@@ -26,11 +27,11 @@
         </table>
     </div>
     <form name="page_prec" id="page_prec" method="post" action="">
-        <input type="submit" name="precedent" value="PRÉC"/>
+        <input type="submit" id="btn-prec" name="precedent" value="PRÉC"/>
     </form>
     <span>Page ??/??</span>
     <form name="page_suiv" id="page_suiv" method="post" action="">
-        <input type="submit" name="suivant" value="SUIV"/>
+        <input type="submit" id="btn-suiv" name="suivant" value="SUIV"/>
     </div>
 </body>
 </html>
@@ -54,22 +55,5 @@
     const urlParams = new URLSearchParams(window.location.search);
 </script>
 <script src="./script_v2.js"></script>
-<script>
-    var form_prec = document.getElementById('page_prec')
-    var form_suiv = document.getElementById('page_suiv')
 
-    var fin_ancien = urlParams.get('page')
-    if(fin_ancien == undefined || fin_ancien == null){
-        var fin_ancien = 1
-    }
-    
-    if(fin_ancien < 25){
-        form_prec.disabled = true;
-    }
-    if(Pokemon.all_pokemons.length >= poke){
-        form_suiv.disabled = true;
-    }
 
-    form_prec.action = `pokemons_v2.html?page=${parseInt() - 1}`
-    form_suiv.action = `pokemons_v2.html?page=${parseInt(poke)}`
-</script>
