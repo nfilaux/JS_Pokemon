@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Pokémons v2</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <h1>Liste des Pokémons</h1>
+    <div id="pokemonContainer">
+        <table id="pokemonTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Génération</th>
+                    <th>Types</th>
+                    <th>Endurance</th>
+                    <th>Attaque de base</th>
+                    <th>Défense de base</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody id="pokemonBody">
+
+            </tbody>
+        </table>
+    </div>
+    <form name="page_prec" id="page_prec" method="post" action="">
+        <input type="submit" id="btn-prec" name="precedent" value="PRÉC"/>
+    </form>
+    <form name="page_suiv" id="page_suiv" method="post" action="">
+        <input type="submit" id="btn-suiv" name="suivant" value="SUIV"/>
+    </div>
+</body>
+</html>
+
+
+
+<script src="../data/charged_moves.js"></script>
+<script src="../data/cp_multiplier.js"></script>
+<script src="../data/fast_moves.js"></script>
+<script src="../data/generation.js"></script>
+<script src="../data/pokemon_moves.js"></script>
+<script src="../data/pokemon_type.js"></script>
+<script src="../data/pokemons.js"></script>
+<script src="../data/type_effectiveness.js"></script>
+<script src="../data/Pokemon.js"></script>
+<script src="../data/Type.js"></script>
+<script src="../data/Attack.js"></script>
+<script src="../data/import.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Vérifier si les paramètres ont déjà été ajoutés
+        if (!sessionStorage.paramAjout) {
+            // Récupérer l'URL actuelle
+            let urlActuelle = window.location.href;
+
+            // Concaténer le paramètre 'page=0' à l'URL actuelle
+            let nouvelleURL = `${urlActuelle}?page=0`;
+
+            // Rediriger vers la nouvelle URL
+            window.location.href = nouvelleURL;
+
+            // Marquer que les paramètres ont été ajoutés
+            sessionStorage.paramAjout = true;
+        }
+    });
+</script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+</script>
+<script src="./script_v3.js"></script>
+
+
