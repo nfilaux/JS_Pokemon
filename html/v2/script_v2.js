@@ -10,8 +10,6 @@
 d’information)
 */
 
-console.log(Object.keys(Pokemon.all_pokemons).length)
-
 var body_table = document.getElementById('pokemonBody')
 var debut = parseInt(urlParams.get('page'))
 if(debut == undefined || debut == null){
