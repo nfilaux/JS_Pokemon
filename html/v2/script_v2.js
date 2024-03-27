@@ -1,3 +1,14 @@
+/*
+● identifiant unique
+● nom
+● génération
+● types (liste des noms des types du Pokémon)
+● endurance (stamina)
+● points d’attaque de base
+● points de défense de base
+● image (en taille miniature, adaptée à la hauteur des autres champs
+d’information)
+*/
 
 var body_table = document.getElementById('pokemonBody')
 
@@ -45,11 +56,25 @@ for(let poke in Pokemon.all_pokemons){
     while(img_url.length < 3){
         img_url = '0' + img_url
     }
+    if(Pokemon.all_pokemons[poke].generation <= 7){
+        img_url = img_url + 'MS'
+    }
 
-    sprite.src = `../webp/sprites/${img_url}MS.webp`
+    sprite.src = `../webp/sprites/${img_url}.webp`
     img.appendChild(sprite)
     ligne.appendChild(img)
-
-
-
 }
+
+// Récupérer les paramètres de l'URL
+const params = new URLSearchParams(window.location.search);
+
+// Récupérer la valeur actuelle du paramètre "page" et l'incrémenter de 1
+let page = params.get('page');
+page = page ? parseInt(page) + 1 : 2; // Si le paramètre n'existe pas, commencer à partir de la page 2
+
+// Mettre à jour les paramètres de l'URL
+params.set('page', page);
+
+// Mettre à jour l'URL sans recharger la page
+const newUrl = window.location.pathname + '?' + params.toString();
+history.pushState({}, '', newUrl);
