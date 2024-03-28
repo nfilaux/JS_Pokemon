@@ -152,14 +152,15 @@ document.addEventListener("DOMContentLoaded", function() {
       }
       popup.appendChild(types)
 
-        let atk_c = document.createElement('ol');
-        let atk_f = document.createElement('ol');
+        let atk_c = document.createElement('ul');
+        let atk_f = document.createElement('ul');
 
         for (let i = 0; i < Pokemon.all_pokemons[pok_id].attacks.length; i++) {
             let attackName = Pokemon.all_pokemons[pok_id].attacks[i].form + " : " +  Pokemon.all_pokemons[pok_id].attacks[i].nom;
             
             // Créez un nouvel élément p pour chaque attaque
-            let attackElement = document.createElement('ul');
+            let attackElement = document.createElement('li');
+            attackElement.setAttribute('src', "../css/pokeball.png");
             attackElement.textContent = attackName;
 
             if (Pokemon.all_pokemons[pok_id].attacks[i].form === "charged") {
