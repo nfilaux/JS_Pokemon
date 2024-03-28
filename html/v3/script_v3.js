@@ -103,17 +103,79 @@ while(total < 25 && poke <= keys[keys.length -1]){
     form_prec.action = `pokemons_v3.html?page=${prec2}`
     form_suiv.action = `pokemons_v3.html?page=${parseInt(poke)}`
 
+
+//detail 
 document.addEventListener("DOMContentLoaded", function() {
     const pokemonList = document.getElementById("pokemonTable").getElementsByTagName("tr");
     const popup = document.getElementById("popup");
-    const popupName = document.getElementById("popupName");
+
+    popup.removeChild(); // Suppression de l'image du popup
 
     // Fonction pour afficher la fenêtre contextuelle avec les détails du Pokémon
     function showPopup(pok_id) {
-      popupName.textContent = pok_id;
-      // Ajoutez ici la logique pour obtenir les détails du Pokémon en fonction de son nom ou de son ID
-      console.log(Pokemon.all_pokemons[pok_id])
       popup.style.display = "block";
+      var mouseY = event.clientY;
+      var offset = 2; // Décalage de la popup par rapport au curseur
+
+      // Prendre en compte le défilement de la page
+      var scrollY = window.pageYOffset;
+
+      // Calculer la position verticale de la popup en tenant compte de l'espace disponible
+      var popupTop = mouseY + scrollY + offset;
+      var popupHeight = popup.offsetHeight;
+      var windowHeight = window.innerHeight;
+
+      // Si la popup dépasse en bas de la fenêtre, la placer au-dessus du curseur
+      if (popupTop + popupHeight > windowHeight) {
+          popupTop = mouseY + scrollY - popupHeight - offset;
+      }
+
+      popup.style.top = popupTop + 'px';
+
+      var id = document.createElement('h4');
+      id.appendChild(document.createTextNode(Pokemon.all_pokemons[pok_id].pokemon_id + " " + Pokemon.all_pokemons[pok_id].pokemon_name));
+      popup.appendChild(id);
+
+      var info_gen = document.createElement('p');
+      info_gen.appendChild(document.createTextNode("Generation " + Pokemon.all_pokemons[pok_id]._generation));
+      popup.appendChild(info_gen);
+
+
+      var info = document.createElement('p');
+      info.appendChild(document.createTextNode("base attaque " + Pokemon.all_pokemons[pok_id].base_attack + " / base défence " + Pokemon.all_pokemons[pok_id].base_defense + " / base stamina " + Pokemon.all_pokemons[pok_id].base_stamina));
+      popup.appendChild(info);
+
+      let types = document.createElement('p')
+      if(Pokemon.all_pokemons[pok_id].types.length === 1){
+        types.textContent = "Type : " + Pokemon.all_pokemons[pok_id].types[0].nom
+      }
+      else{
+        types.textContent = `Type : ${Pokemon.all_pokemons[pok_id].types[0].nom} / ${Pokemon.all_pokemons[pok_id].types[1].nom}`
+      }
+      popup.appendChild(types)
+
+        let atk_c = document.createElement('ol');
+        let atk_f = document.createElement('ol');
+
+        for (let i = 0; i < Pokemon.all_pokemons[pok_id].attacks.length; i++) {
+            let attackName = Pokemon.all_pokemons[pok_id].attacks[i].form + " : " +  Pokemon.all_pokemons[pok_id].attacks[i].nom;
+            
+            // Créez un nouvel élément p pour chaque attaque
+            let attackElement = document.createElement('ul');
+            attackElement.textContent = attackName;
+
+            if (Pokemon.all_pokemons[pok_id].attacks[i].form === "charged") {
+                atk_c.appendChild(attackElement);
+            } else {
+                atk_f.appendChild(attackElement);
+            }
+        }
+
+        // Ajoutez les éléments atk_c et atk_f une seule fois après la boucle
+        popup.appendChild(atk_c);
+        popup.appendChild(atk_f);
+
+      console.log(Pokemon.all_pokemons[pok_id]);
     }
     // Écouteurs d'événements pour chaque élément de la liste de Pokémon
     for (let i = 0; i < pokemonList.length; i++) {
@@ -122,42 +184,61 @@ document.addEventListener("DOMContentLoaded", function() {
             showPopup(pok_id);
         });
     }
-
 });
 
 
 // image 
 
+const pokemonImages = document.querySelectorAll('#pokemonBody img');
+var popup = document.getElementById("popupimg");
+var thumbnails = document.createElement('img');
 
+pokemonImages.forEach(image => {
 
-    const pokemonImages = document.querySelectorAll('#pokemonBody img');
-    var popup = document.getElementById("popup");
-    var thumbnails = document.createElement('img');
+    image.addEventListener('mouseover', function(event) {
+        var dernierSlashIndex = image.src.lastIndexOf("/");
 
-    pokemonImages.forEach(image => {
-        
+        // Extraire la partie du chemin après le dernier slash
+        var nomFichier = image.src.substring(dernierSlashIndex + 1);
 
-        image.addEventListener('mouseover', function() {
-            var dernierSlashIndex = image.src.lastIndexOf("/");
+        // Enlever le "MS" du nom de fichier
+        var nomFichierSansMS = image.src.replace("MS", "");
 
-            // Extraire la partie du chemin après le dernier slash
-            var nomFichier = image.src.substring(dernierSlashIndex + 1);
+        // Remplacer "sprites" par "thumbnails"
+        var nomFichierModifie = nomFichierSansMS.replace("sprites", "thumbnails");
+                 
+        popup.style.display = "block";
 
-            // Enlever le "MS" du nom de fichier
-            var nomFichierSansMS = image.src.replace("MS", "");
+        // Définition des attributs de l'image
+        thumbnails.setAttribute('src', nomFichierModifie);
 
-            // Remplacer "sprites" par "thumbnails"
-            var nomFichierModifie = nomFichierSansMS.replace("sprites", "thumbnails");
-                     
-            popup.style.display = "block";
+        // Positionner la popup près du curseur de la souris
+        var mouseX = event.clientX;
+        var mouseY = event.clientY;
+        var offset = 10; // Décalage de la popup par rapport au curseur
 
-            // Définition des attributs de l'image
-            thumbnails.setAttribute('src', nomFichierModifie);
-            popup.appendChild(thumbnails);
-        });
+        // Prendre en compte le défilement de la page
+        var scrollX = window.pageXOffset;
+        var scrollY = window.pageYOffset;
 
-        image.addEventListener('mouseout', function() {
-            popup.style.display = "none";
-            popup.removeChild(thumbnails); // Suppression de l'image du popup
-        });
+        // Calculer la position verticale de la popup en tenant compte de l'espace disponible
+        var popupTop = mouseY + scrollY + offset;
+        var popupHeight = popup.offsetHeight;
+        var windowHeight = window.innerHeight;
+
+        // Si la popup dépasse en bas de la fenêtre, la placer au-dessus du curseur
+        if (popupTop + popupHeight > windowHeight) {
+            popupTop = mouseY + scrollY - popupHeight - offset;
+        }
+
+        popup.style.left = mouseX + scrollX + offset + 'px';
+        popup.style.top = popupTop + 'px';
+
+        popup.appendChild(thumbnails);
     });
+
+    image.addEventListener('mouseout', function() {
+        popup.style.display = "none";
+        popup.removeChild(thumbnails); // Suppression de l'image du popup
+    });
+});
