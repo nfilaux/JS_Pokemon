@@ -33,11 +33,5 @@ tbody>tr:nth-of-type(even) {
     border: 1px solid #ccc;
     border-radius: 5px;
     z-index: 1;
-    right: 0;
-    top: 0;
 }
 
-.popup img {
-    width: 100px;
-    height: 100px;
-}
