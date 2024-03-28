@@ -23,3 +23,21 @@ td:last-of-type {
 tbody>tr:nth-of-type(even) {
     background-color: rgb(237 238 242);
 }
+
+ /* Style pour la popup */
+ .popup {
+    display: none; /* Cache la popup par défaut */
+    position: absolute;
+    background-color: lightblue;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1;
+    right: 0;
+    top: 0;
+}
+
+.popup img {
+    width: 100px;
+    height: 100px;
+}

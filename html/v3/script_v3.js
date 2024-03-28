@@ -107,20 +107,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const pokemonList = document.getElementById("pokemonTable").getElementsByTagName("tr");
     const popup = document.getElementById("popup");
     const popupName = document.getElementById("popupName");
-    const popupDetails = document.getElementById("popupDetails");
-    const closePopup = document.getElementById("closePopup");
-
-    console.log(popup); // Vérifier si la popup est correctement sélectionnée
 
     // Fonction pour afficher la fenêtre contextuelle avec les détails du Pokémon
     function showPopup(pok_id) {
       popupName.textContent = pok_id;
       // Ajoutez ici la logique pour obtenir les détails du Pokémon en fonction de son nom ou de son ID
-      popupDetails.textContent = "Détails du Pokémon " + pok_id; // Exemple basique
       console.log(Pokemon.all_pokemons[pok_id])
       popup.style.display = "block";
     }
-    console.log(pokemonList)
     // Écouteurs d'événements pour chaque élément de la liste de Pokémon
     for (let i = 0; i < pokemonList.length; i++) {
         pokemonList[i].addEventListener("click", function(event) {
@@ -129,9 +123,41 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Événement pour fermer la fenêtre contextuelle
-    closePopup.addEventListener("click", function() {
-      console.log("Popup closed"); // Vérifier si l'événement est déclenché
-      popup.style.display = "none";
-    });
 });
+
+
+// image 
+
+
+
+    const pokemonImages = document.querySelectorAll('#pokemonBody img');
+    var popup = document.getElementById("popup");
+    var thumbnails = document.createElement('img');
+
+    pokemonImages.forEach(image => {
+        
+
+        image.addEventListener('mouseover', function() {
+            var dernierSlashIndex = image.src.lastIndexOf("/");
+
+            // Extraire la partie du chemin après le dernier slash
+            var nomFichier = image.src.substring(dernierSlashIndex + 1);
+
+            // Enlever le "MS" du nom de fichier
+            var nomFichierSansMS = image.src.replace("MS", "");
+
+            // Remplacer "sprites" par "thumbnails"
+            var nomFichierModifie = nomFichierSansMS.replace("sprites", "thumbnails");
+                     
+            popup.style.display = "block";
+
+            // Définition des attributs de l'image
+            thumbnails.setAttribute('src', nomFichierModifie);
+            popup.appendChild(thumbnails);
+        });
+
+        image.addEventListener('mouseout', function() {
+            popup.style.display = "none";
+            popup.removeChild(thumbnails); // Suppression de l'image du popup
+        });
+    });
