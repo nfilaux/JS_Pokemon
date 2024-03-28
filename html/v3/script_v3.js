@@ -109,8 +109,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const pokemonList = document.getElementById("pokemonTable").getElementsByTagName("tr");
     const popup = document.getElementById("popup");
 
-    popup.removeChild(); // Suppression de l'image du popup
-
     // Fonction pour afficher la fenêtre contextuelle avec les détails du Pokémon
     function showPopup(pok_id) {
       popup.style.display = "block";
