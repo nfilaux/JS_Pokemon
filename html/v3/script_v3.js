@@ -48,7 +48,6 @@ while(total < 25 && poke <= keys[keys.length -1]){
     }
     ligne.appendChild(types)
 
-
     let stam = document.createElement('td')
     stam.textContent = Pokemon.all_pokemons[poke].base_stamina
     ligne.appendChild(stam)
@@ -74,11 +73,12 @@ while(total < 25 && poke <= keys[keys.length -1]){
     sprite.src = `../webp/sprites/${img_url}.webp`
     img.appendChild(sprite)
     ligne.appendChild(img)
+
+    
    }
    poke++;
     
 }
-
     var form_prec = document.getElementById('page_prec')
     var form_suiv = document.getElementById('page_suiv')
 
@@ -104,69 +104,100 @@ while(total < 25 && poke <= keys[keys.length -1]){
     form_suiv.action = `pokemons_v3.html?page=${parseInt(poke)}`
 
 
+//--------------------------------------------------------------------------------------
+
 //detail 
+
+const pokemonImages = document.querySelectorAll('#pokemonBody img');
+
 document.addEventListener("DOMContentLoaded", function() {
     const pokemonList = document.getElementById("pokemonTable").getElementsByTagName("tr");
     const popup = document.getElementById("popup");
+        
+    // Écouteurs d'événements pour chaque élément de la liste de Pokémon
+    for (let i = 0; i < pokemonList.length; i++) {
+        pokemonList[i].addEventListener("click", function(event) {
+            const pok_id = pokemonList[i].cells[0].textContent; // Récupérer le id du Pokémon depuis la premiere cellule
+            showPopup(pok_id);
+        });
+    }
+
 
     // Fonction pour afficher la fenêtre contextuelle avec les détails du Pokémon
     function showPopup(pok_id) {
-      popup.style.display = "block";
-      var mouseY = event.clientY;
-      var offset = 2; // Décalage de la popup par rapport au curseur
 
-      // Prendre en compte le défilement de la page
-      var scrollY = window.pageYOffset;
+        // Effacer le contenu de la popup lorsque la popup est fermée
+        popup.innerHTML = '';
 
-      // Calculer la position verticale de la popup en tenant compte de l'espace disponible
-      var popupTop = mouseY + scrollY + offset;
-      var popupHeight = popup.offsetHeight;
-      var windowHeight = window.innerHeight;
+        popup.style.display = "block";
+        var mouseY = event.clientY;
+        var offset = 0; // Décalage de la popup par rapport au curseur
 
-      // Si la popup dépasse en bas de la fenêtre, la placer au-dessus du curseur
-      if (popupTop + popupHeight > windowHeight) {
-          popupTop = mouseY + scrollY - popupHeight - offset;
-      }
+        // Calculer la position verticale de la popup en tenant compte de l'espace disponible
+        var popupTop = mouseY + scrollY + offset;
+        var popupHeight = popup.offsetHeight;
+        popup.style.top = popupTop + 'px';
 
-      popup.style.top = popupTop + 'px';
-
-      var id = document.createElement('h4');
-      id.appendChild(document.createTextNode(Pokemon.all_pokemons[pok_id].pokemon_id + " " + Pokemon.all_pokemons[pok_id].pokemon_name));
-      popup.appendChild(id);
-
-      var info_gen = document.createElement('p');
-      info_gen.appendChild(document.createTextNode("Generation " + Pokemon.all_pokemons[pok_id]._generation));
-      popup.appendChild(info_gen);
+         // Créer l'élément image
+         let image = document.createElement('img');
+         let img_url = String(Pokemon.all_pokemons[pok_id].pokemon_id);
+         while(img_url.length < 3){
+             img_url = '0' + img_url;
+         }
+         image.src = `../webp/thumbnails/${img_url}.webp`;
+         popup.appendChild(image);
 
 
-      var info = document.createElement('p');
-      info.appendChild(document.createTextNode("base attaque " + Pokemon.all_pokemons[pok_id].base_attack + " / base défence " + Pokemon.all_pokemons[pok_id].base_defense + " / base stamina " + Pokemon.all_pokemons[pok_id].base_stamina));
-      popup.appendChild(info);
+        // Créer l'élément id et nom
+        var id = document.createElement('h4');
+        id.appendChild(document.createTextNode(Pokemon.all_pokemons[pok_id].pokemon_id + " " + Pokemon.all_pokemons[pok_id].pokemon_name));
+        popup.appendChild(id);
 
-      let types = document.createElement('p')
-      if(Pokemon.all_pokemons[pok_id].types.length === 1){
-        types.textContent = "Type : " + Pokemon.all_pokemons[pok_id].types[0].nom
-      }
-      else{
-        types.textContent = `Type : ${Pokemon.all_pokemons[pok_id].types[0].nom} / ${Pokemon.all_pokemons[pok_id].types[1].nom}`
-      }
-      popup.appendChild(types)
+        // Créer l'élément generation 
+        var info_gen = document.createElement('p');
+        info_gen.appendChild(document.createTextNode("Generation " + Pokemon.all_pokemons[pok_id]._generation));
+        popup.appendChild(info_gen);
 
+        // Créer l'élément base atk, def et stam
+        var info = document.createElement('p');
+        info.appendChild(document.createTextNode("base attaque " + Pokemon.all_pokemons[pok_id].base_attack + " / base défence " + Pokemon.all_pokemons[pok_id].base_defense + " / base stamina " + Pokemon.all_pokemons[pok_id].base_stamina));
+        popup.appendChild(info);
+
+        // Créer l'élément type
+        let types = document.createElement('p')
+        if(Pokemon.all_pokemons[pok_id].types.length === 1){
+            types.textContent = "Type : " + Pokemon.all_pokemons[pok_id].types[0].nom
+        }
+        else{
+            types.textContent = `Type : ${Pokemon.all_pokemons[pok_id].types[0].nom} / ${Pokemon.all_pokemons[pok_id].types[1].nom}`
+        }
+        popup.appendChild(types)
+
+        changeColor(Pokemon.all_pokemons[pok_id].types[0].nom,popup)
+        
+        // Créer l'élément liste atk 
         let atk_c = document.createElement('ul');
         let atk_f = document.createElement('ul');
 
         for (let i = 0; i < Pokemon.all_pokemons[pok_id].attacks.length; i++) {
             let attackName = Pokemon.all_pokemons[pok_id].attacks[i].form + " : " +  Pokemon.all_pokemons[pok_id].attacks[i].nom;
-            
+
             // Créez un nouvel élément p pour chaque attaque
             let attackElement = document.createElement('li');
+            let attackTypeList = document.createElement('ul');
+            let attackType = document.createElement('li');
             attackElement.setAttribute('src', "../css/pokeball.png");
             attackElement.textContent = attackName;
+            attackType.textContent = Pokemon.all_pokemons[pok_id].attacks[i].type.nom;
 
             if (Pokemon.all_pokemons[pok_id].attacks[i].form === "charged") {
                 atk_c.appendChild(attackElement);
+                attackTypeList.appendChild(attackType);
+                atk_c.appendChild(attackTypeList);
             } else {
                 atk_f.appendChild(attackElement);
+                attackTypeList.appendChild(attackType);
+                atk_f.appendChild(attackTypeList);
             }
         }
 
@@ -176,29 +207,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
       console.log(Pokemon.all_pokemons[pok_id]);
     }
-    // Écouteurs d'événements pour chaque élément de la liste de Pokémon
-    for (let i = 0; i < pokemonList.length; i++) {
-        pokemonList[i].addEventListener("click", function(event) {
-            const pok_id = pokemonList[i].cells[0].textContent; // Récupérer le nom du Pokémon depuis la deuxième cellule (index 1) de la ligne
-            showPopup(pok_id);
-        });
-    }
+
 });
 
 
 // image 
 
-const pokemonImages = document.querySelectorAll('#pokemonBody img');
-var popup = document.getElementById("popupimg");
-var thumbnails = document.createElement('img');
-
 pokemonImages.forEach(image => {
 
-    image.addEventListener('mouseover', function(event) {
-        var dernierSlashIndex = image.src.lastIndexOf("/");
+    var popup = document.getElementById("popupimg");
+    var thumbnails = document.createElement('img');
 
-        // Extraire la partie du chemin après le dernier slash
-        var nomFichier = image.src.substring(dernierSlashIndex + 1);
+    image.addEventListener('mouseover', function(event) {
 
         // Enlever le "MS" du nom de fichier
         var nomFichierSansMS = image.src.replace("MS", "");
@@ -234,6 +254,7 @@ pokemonImages.forEach(image => {
         popup.style.top = popupTop + 'px';
 
         popup.appendChild(thumbnails);
+
     });
 
     image.addEventListener('mouseout', function() {
@@ -241,3 +262,91 @@ pokemonImages.forEach(image => {
         popup.removeChild(thumbnails); // Suppression de l'image du popup
     });
 });
+
+
+//changement de couleur
+
+function changeColor(type, elem) {
+    var colorB;
+    var text;
+    switch (type) {
+        case 'Rock':
+            text = '#fff';
+            colorB = '#ba6';
+            break;
+        case 'Ground':
+            text = '#fff';
+            colorB = '#db5';
+            break;
+        case 'Fire':
+            text = '#fff';
+            colorB = '#f42';
+            break;
+        case 'Water':
+            text = '#fff';
+            colorB = '#39f'; 
+            break;
+        case 'Psychic':
+            text = '#fff';
+            colorB = '#f59';
+            break;
+        case 'Electric':
+            text = '#000';
+            colorB = '#fc3';
+            break;
+        case 'Steel':
+            text = '#000';
+            colorB = '#aab';
+            break;
+        case 'Normal':
+            text = '#000';
+            colorB = '#aa9';
+            break;
+        case 'Flying':
+            text = '#000';
+            colorB = '#89f';
+            break;
+        case 'Ice':
+            text = '#000';
+            colorB = '#6cf';
+            break;
+        case 'Poison':
+            text = '#fff';
+            colorB = '#a59';
+            break;
+        case 'Ghost':
+            text = '#fff';
+            colorB = '#66b';
+            break;
+        case 'Grass':
+            colorB = '#7c5';
+            text = '#fff';
+            break;
+        case 'Fighting':
+            colorB = '#b54';
+            text = '#fff';
+            break;
+        case 'Fairy':
+            text = '#fff';
+            colorB = '#e9e';
+            break;
+        case 'Bug':
+            text = '#fff';
+            colorB = '#ab2';
+            break;
+        case 'Dragon':
+            text = '#fff';
+            colorB = '#76e';
+            break;
+        case 'Dark':
+            text = '#fff';
+            colorB = '#754';
+            break;
+        default:
+            colorB = '#FFFFFF';
+            text = '#000';
+            break;
+    }
+    elem.style.color = text;
+    elem.style.backgroundColor = colorB;
+}

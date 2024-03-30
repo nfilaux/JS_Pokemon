@@ -1,6 +1,11 @@
+
+body{
+    background-color: #c9c9c9;
+}
+
 table {
     border-collapse: collapse;
-    border: 2px solid rgb(140 140 140);
+    border: 2px solid rgb(107, 106, 106);
     font-family: sans-serif;
     font-size: 0.8rem;
     letter-spacing: 1px;
@@ -29,9 +34,29 @@ tbody>tr:nth-of-type(even) {
     display: none; /* Cache la popup par défaut */
     position: absolute;
     background-color: lightblue;
+    color: #000;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    z-index: 1;
+    right: 10px;
+}
+
+.popup img {
+    background-color: #ccc;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.popupimg {
+    display: none; /* Cache la popup par défaut */
+    position: absolute;
+    background-color: #ccc;
+    padding: 10px;
+    border: 2px solid #424242;
+    border-radius: 10px;
     z-index: 1;
 }
+
 
