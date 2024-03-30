@@ -214,12 +214,10 @@ document.addEventListener("DOMContentLoaded", function() {
 // image 
 
 pokemonImages.forEach(image => {
-
     var popup = document.getElementById("popupimg");
     var thumbnails = document.createElement('img');
 
     image.addEventListener('mouseover', function(event) {
-
         // Enlever le "MS" du nom de fichier
         var nomFichierSansMS = image.src.replace("MS", "");
 
@@ -250,7 +248,17 @@ pokemonImages.forEach(image => {
             popupTop = mouseY + scrollY - popupHeight - offset;
         }
 
-        popup.style.left = mouseX + scrollX + offset + 'px';
+        // Calculer la position horizontale de la popup en tenant compte de l'espace disponible
+        var popupLeft = mouseX + scrollX + offset;
+        var popupWidth = popup.offsetWidth;
+        var windowWidth = window.innerWidth;
+
+        // Si la popup dépasse à droite de la fenêtre, la placer à gauche du curseur
+        if (popupLeft + popupWidth > windowWidth) {
+            popupLeft = mouseX + scrollX - popupWidth - offset;
+        }
+
+        popup.style.left = popupLeft + 'px';
         popup.style.top = popupTop + 'px';
 
         popup.appendChild(thumbnails);
@@ -262,6 +270,10 @@ pokemonImages.forEach(image => {
         popup.removeChild(thumbnails); // Suppression de l'image du popup
     });
 });
+
+
+
+
 
 
 //changement de couleur
@@ -320,7 +332,7 @@ function changeColor(type, elem) {
             break;
         case 'Grass':
             colorB = '#7c5';
-            text = '#fff';
+            text = '#000';
             break;
         case 'Fighting':
             colorB = '#b54';

@@ -1,6 +1,6 @@
 
 body{
-    background-color: #c9c9c9;
+    background-color: #14409e;
 }
 
 table {
@@ -13,6 +13,8 @@ table {
 
 thead {
     background-color: rgb(228 240 245);
+    position: sticky;
+    top: 0px;
 }
 
 th,
@@ -23,6 +25,10 @@ td {
 
 td:last-of-type {
     text-align: center;
+}
+
+tbody{
+    background-color: #fcfcfc;
 }
 
 tbody>tr:nth-of-type(even) {
@@ -60,3 +66,11 @@ tbody>tr:nth-of-type(even) {
 }
 
 
+@media only screen and (max-width: 600px) {
+
+    table td {
+      width: 50%; /* Deux colonnes par ligne */
+      box-sizing: border-box;
+    }
+    
+  }
