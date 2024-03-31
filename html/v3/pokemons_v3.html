@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <h1>Liste des Pokémons</h1>
+    <img class="logo" src="../css/logo_pokemon.png" alt="logo pokemon" title="logo pokemon"/>
     <div id="pokemonContainer">
         <table id="pokemonTable">
             <thead>
@@ -27,13 +27,14 @@
             </tbody>
         </table>
     </div>
-    <form name="page_prec" id="page_prec" method="post" action="">
-        <input type="submit" id="btn-prec" name="precedent" value="PRÉC"/>
-    </form>
-    <form name="page_suiv" id="page_suiv" method="post" action="">
-        <input type="submit" id="btn-suiv" name="suivant" value="SUIV"/>
+    <div class="bouton">
+        <form name="page_prec" id="page_prec" method="post" action="">
+            <input type="submit" id="btn-prec" name="precedent" value="PRÉC"/>
+        </form>
+        <form name="page_suiv" id="page_suiv" method="post" action="">
+            <input type="submit" id="btn-suiv" name="suivant" value="SUIV"/>
+        </div>
     </div>
-
     <div id="popupimg" class="popupimg">
     </div>
 

@@ -133,9 +133,10 @@ document.addEventListener("DOMContentLoaded", function() {
         var mouseY = event.clientY;
         var offset = 0; // Décalage de la popup par rapport au curseur
 
+        let div = document.createElement('div');
+
         // Calculer la position verticale de la popup en tenant compte de l'espace disponible
         var popupTop = mouseY + scrollY + offset;
-        var popupHeight = popup.offsetHeight;
         popup.style.top = popupTop + 'px';
 
          // Créer l'élément image
@@ -145,23 +146,13 @@ document.addEventListener("DOMContentLoaded", function() {
              img_url = '0' + img_url;
          }
          image.src = `../webp/thumbnails/${img_url}.webp`;
-         popup.appendChild(image);
+         div.appendChild(image);
 
-
+        let description = document.createElement('div');
         // Créer l'élément id et nom
         var id = document.createElement('h4');
         id.appendChild(document.createTextNode(Pokemon.all_pokemons[pok_id].pokemon_id + " " + Pokemon.all_pokemons[pok_id].pokemon_name));
-        popup.appendChild(id);
-
-        // Créer l'élément generation 
-        var info_gen = document.createElement('p');
-        info_gen.appendChild(document.createTextNode("Generation " + Pokemon.all_pokemons[pok_id]._generation));
-        popup.appendChild(info_gen);
-
-        // Créer l'élément base atk, def et stam
-        var info = document.createElement('p');
-        info.appendChild(document.createTextNode("base attaque " + Pokemon.all_pokemons[pok_id].base_attack + " / base défence " + Pokemon.all_pokemons[pok_id].base_defense + " / base stamina " + Pokemon.all_pokemons[pok_id].base_stamina));
-        popup.appendChild(info);
+        description.appendChild(id);
 
         // Créer l'élément type
         let types = document.createElement('p')
@@ -171,16 +162,42 @@ document.addEventListener("DOMContentLoaded", function() {
         else{
             types.textContent = `Type : ${Pokemon.all_pokemons[pok_id].types[0].nom} / ${Pokemon.all_pokemons[pok_id].types[1].nom}`
         }
-        popup.appendChild(types)
+        description.appendChild(types)
 
         changeColor(Pokemon.all_pokemons[pok_id].types[0].nom,popup)
         
+        // Créer l'élément generation 
+        var info_gen = document.createElement('p');
+        info_gen.appendChild(document.createTextNode("Generation : " + Pokemon.all_pokemons[pok_id]._generation));
+        description.appendChild(info_gen);
+
+        div.appendChild(description);
+        popup.appendChild(div);
+
+        div.classList.add("info");
+
+        // Créer l'élément base atk, def et stam
+        var info = document.createElement('p');
+        info.appendChild(document.createTextNode("Attaque de base : " + Pokemon.all_pokemons[pok_id].base_attack + " / Défense de base : " + Pokemon.all_pokemons[pok_id].base_defense + " / Endurance : " + Pokemon.all_pokemons[pok_id].base_stamina));
+        popup.appendChild(info);
+
         // Créer l'élément liste atk 
+        var info_atk = document.createElement('div')
+        var div_c = document.createElement('div')
+        var div_f = document.createElement('div')
         let atk_c = document.createElement('ul');
         let atk_f = document.createElement('ul');
 
+        var charged = document.createElement('h4');
+        charged.textContent = "Charged : "
+        div_c.appendChild(charged)
+
+        var fast = document.createElement('h4');
+        fast.textContent = "Fast : "
+        div_f.appendChild(fast)
+
         for (let i = 0; i < Pokemon.all_pokemons[pok_id].attacks.length; i++) {
-            let attackName = Pokemon.all_pokemons[pok_id].attacks[i].form + " : " +  Pokemon.all_pokemons[pok_id].attacks[i].nom;
+            let attackName = Pokemon.all_pokemons[pok_id].attacks[i].nom;
 
             // Créez un nouvel élément p pour chaque attaque
             let attackElement = document.createElement('li');
@@ -201,9 +218,13 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
+        info_atk.classList.add("atk");
         // Ajoutez les éléments atk_c et atk_f une seule fois après la boucle
-        popup.appendChild(atk_c);
-        popup.appendChild(atk_f);
+        div_c.appendChild(atk_c);
+        div_f.appendChild(atk_f);
+        info_atk.appendChild(div_c);
+        info_atk.appendChild(div_f);
+        popup.appendChild(info_atk);
 
       console.log(Pokemon.all_pokemons[pok_id]);
     }
