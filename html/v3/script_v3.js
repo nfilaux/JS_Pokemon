@@ -12,6 +12,7 @@ d’information)
 
 var body_table = document.getElementById('pokemonBody')
 var debut = parseInt(urlParams.get('page'))
+
 if (isNaN(debut)) {
     debut = 0;
 }
@@ -48,6 +49,7 @@ while (total < 25 && poke <= keys[keys.length - 1]) {
         }
         ligne.appendChild(types)
 
+
         let stam = document.createElement('td')
         stam.textContent = Pokemon.all_pokemons[poke].base_stamina
         ligne.appendChild(stam)
@@ -73,12 +75,11 @@ while (total < 25 && poke <= keys[keys.length - 1]) {
         sprite.src = `../webp/sprites/${img_url}.webp`
         img.appendChild(sprite)
         ligne.appendChild(img)
-
-
     }
     poke++;
 
 }
+
 var form_prec = document.getElementById('page_prec')
 var form_suiv = document.getElementById('page_suiv')
 
@@ -87,7 +88,7 @@ if (fin_ancien == undefined || fin_ancien == null) {
     var fin_ancien = 1
 }
 
-if (fin_ancien < 25) {
+if (debut <= 1) {
     document.getElementById("btn-prec").disabled = true;
 } else {
     document.getElementById("btn-prec").disabled = false;
@@ -97,6 +98,8 @@ if (keys[keys.length - 1] <= poke) {
 } else {
     document.getElementById("btn-suiv").disabled = false;
 }
+
+
 let debut_prece = debut;
 let t_poke_prec = 0;
 while (t_poke_prec < 25 && debut_prece > 0) {
@@ -105,6 +108,8 @@ while (t_poke_prec < 25 && debut_prece > 0) {
     }
     debut_prece--;
 }
+
+form_prec.action = `pokemons_v3.html?page=${debut_prece}`
 form_suiv.action = `pokemons_v3.html?page=${parseInt(poke)}`
 
 
@@ -134,17 +139,12 @@ document.addEventListener("DOMContentLoaded", function () {
         popup.innerHTML = '';
 
         popup.style.display = "block";
-        var mouseY = event.clientY;
-        var offset = 0; // Décalage de la popup par rapport au curseur
-
         let div = document.createElement('div');
-
-        // Calculer la position verticale de la popup en tenant compte de l'espace disponible
-        var popupTop = mouseY + scrollY + offset;
-        popup.style.top = popupTop + 'px';
 
         // Créer l'élément image
         let image = document.createElement('img');
+        let type1 = document.createElement('img');
+        let type2 = document.createElement('img');
         let img_url = String(Pokemon.all_pokemons[pok_id].pokemon_id);
         while (img_url.length < 3) {
             img_url = '0' + img_url;
@@ -159,14 +159,26 @@ document.addEventListener("DOMContentLoaded", function () {
         description.appendChild(id);
 
         // Créer l'élément type
+        let info_type = document.createElement('div');
         let types = document.createElement('p')
+        let types2 = document.createElement('p')
         if (Pokemon.all_pokemons[pok_id].types.length === 1) {
-            types.textContent = "Type : " + Pokemon.all_pokemons[pok_id].types[0].nom
+            types.textContent = Pokemon.all_pokemons[pok_id].types[0].nom
+            type1.src = `../css/${Pokemon.all_pokemons[pok_id].types[0].nom}.ico`
+            info_type.appendChild(type1)
+            info_type.appendChild(types)
         }
         else {
-            types.textContent = `Type : ${Pokemon.all_pokemons[pok_id].types[0].nom} / ${Pokemon.all_pokemons[pok_id].types[1].nom}`
+            type1.src = `../css/${Pokemon.all_pokemons[pok_id].types[0].nom}.ico`
+            types.textContent = `${Pokemon.all_pokemons[pok_id].types[0].nom} / `
+            type2.src = `../css/${Pokemon.all_pokemons[pok_id].types[1].nom}.ico`
+            types2.textContent = `${Pokemon.all_pokemons[pok_id].types[1].nom}`
+            info_type.appendChild(type1)
+            info_type.appendChild(types)
+            info_type.appendChild(type2)
+            info_type.appendChild(types2)
         }
-        description.appendChild(types)
+        description.appendChild(info_type)
 
         changeColor(Pokemon.all_pokemons[pok_id].types[0].nom, popup)
 
@@ -259,19 +271,8 @@ pokemonImages.forEach(image => {
         var mouseY = event.clientY;
         var offset = 10; // Décalage de la popup par rapport au curseur
 
-        // Prendre en compte le défilement de la page
-        var scrollX = window.pageXOffset;
-        var scrollY = window.pageYOffset;
-
         // Calculer la position verticale de la popup en tenant compte de l'espace disponible
         var popupTop = mouseY + scrollY + offset;
-        var popupHeight = popup.offsetHeight;
-        var windowHeight = window.innerHeight;
-
-        // Si la popup dépasse en bas de la fenêtre, la placer au-dessus du curseur
-        if (popupTop + popupHeight > windowHeight) {
-            popupTop = mouseY + scrollY - popupHeight - offset;
-        }
 
         // Calculer la position horizontale de la popup en tenant compte de l'espace disponible
         var popupLeft = mouseX + scrollX + offset;
@@ -295,11 +296,6 @@ pokemonImages.forEach(image => {
         popup.removeChild(thumbnails); // Suppression de l'image du popup
     });
 });
-
-
-
-
-
 
 //changement de couleur
 
@@ -329,7 +325,7 @@ function changeColor(type, elem) {
             break;
         case 'Electric':
             text = '#000';
-            colorB = '#fc3';
+            colorB = '#fffc63';
             break;
         case 'Steel':
             text = '#000';

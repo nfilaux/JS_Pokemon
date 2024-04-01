@@ -50,10 +50,8 @@ tbody>tr:nth-of-type(even) {
   margin-top: 2em;
 }
 
-/* Style pour la popup */
 .popup {
   display: none;
-  /* Cache la popup par défaut */
   position: absolute;
   background-color: lightblue;
   color: #000;
@@ -62,10 +60,12 @@ tbody>tr:nth-of-type(even) {
   border-radius: 10px;
   z-index: 1;
   left: 10px;
-  position: absolute;
+  top: 300px;
+  position: fixed;
+
 }
 
-.popup img {
+.info img {
   background-color: #fff;
   border: 2px solid #f8f400;
   border-radius: 10px;
@@ -75,9 +75,30 @@ tbody>tr:nth-of-type(even) {
   margin-right: 2em;
 }
 
+.info div div img {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  margin: 0 5px 0 5px;
+}
+
+.info div div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.info div div p {
+  margin: 0;
+}
+
+.info div h4{
+  margin: 15px auto 15px auto;
+}
+
 .popupimg {
   display: none;
-  /* Cache la popup par défaut */
   position: absolute;
   background-color: #fff;
   padding: 10px;
