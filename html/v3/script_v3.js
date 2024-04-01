@@ -360,7 +360,7 @@ function changeColor(type, elem) {
             text = '#fff';
             break;
         case 'Fairy':
-            text = '#fff';
+            text = '#000';
             colorB = '#e9e';
             break;
         case 'Bug':
