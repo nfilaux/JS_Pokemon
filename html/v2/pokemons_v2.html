@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Liste des Pokémons v2</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
-    <h1>Liste des Pokémons</h1>
+    <img class="logo" src="../css/logo_pokemon.png" alt="logo pokemon" title="logo pokemon" />
     <div id="pokemonContainer">
         <table id="pokemonTable">
             <thead>
@@ -25,14 +27,15 @@
 
             </tbody>
         </table>
-    </div>
-    <form name="page_prec" id="page_prec" method="post" action="">
-        <input type="submit" id="btn-prec" name="precedent" value="PRÉC"/>
-    </form>
-    <form name="page_suiv" id="page_suiv" method="post" action="">
-        <input type="submit" id="btn-suiv" name="suivant" value="SUIV"/>
-    </div>
+        <div class="bouton">
+            <form name="page_prec" id="page_prec" method="post" action="">
+                <input type="submit" id="btn-prec" name="precedent" value="PRÉC" />
+            </form>
+            <form name="page_suiv" id="page_suiv" method="post" action="">
+                <input type="submit" id="btn-suiv" name="suivant" value="SUIV" />
+        </div>
 </body>
+
 </html>
 
 
@@ -50,7 +53,7 @@
 <script src="../data/Attack.js"></script>
 <script src="../data/import.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Vérifier si les paramètres ont déjà été ajoutés
         if (!sessionStorage.paramAjout) {
             // Récupérer l'URL actuelle
@@ -71,5 +74,3 @@
     const urlParams = new URLSearchParams(window.location.search);
 </script>
 <script src="./script_v2.js"></script>
-
-
