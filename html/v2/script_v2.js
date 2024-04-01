@@ -98,8 +98,7 @@ if (keys[keys.length - 1] <= poke) {
 } else {
     document.getElementById("btn-suiv").disabled = false;
 }
-prec = parseInt(poke) - 25
-prec2 = prec - 25
+
 
 let debut_prece = debut;
 let t_poke_prec = 0;
