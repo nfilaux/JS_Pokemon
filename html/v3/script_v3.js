@@ -123,6 +123,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const pokemonList = document.getElementById("pokemonTable").getElementsByTagName("tr");
     const popup = document.getElementById("popup");
 
+    popup.addEventListener('mouseenter', function() {
+        document.body.style.overflow = 'hidden';
+    });
+    
+    popup.addEventListener('mouseleave', function() {
+        document.body.style.overflow = 'auto';
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!popup.contains(event.target) && !event.target.closest('#pokemonTable')) {
+            popup.style.display = 'none';
+        }
+    });
+    
+
+ 
     // Écouteurs d'événements pour chaque élément de la liste de Pokémon
     for (let i = 0; i < pokemonList.length; i++) {
         pokemonList[i].addEventListener("click", function (event) {
@@ -130,7 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
             showPopup(pok_id);
         });
     }
-
 
     // Fonction pour afficher la fenêtre contextuelle avec les détails du Pokémon
     function showPopup(pok_id) {
@@ -227,17 +242,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Créez un nouvel élément p pour chaque attaque
             let attackElement = document.createElement('li');
-            let attackElementList = document.createElement('ul');
-            let attackType = document.createElement('li');
+            let attackElementList = document.createElement('div');
+            let attackType = document.createElement('div');
+            let Nomtype = document.createElement('p');
             attackElement.textContent = attackName;
-            let attackDuration = document.createElement('li');
-            let attackPower = document.createElement('li');
-            let attackCrit = document.createElement('li');
-            let attackEnergieDelta = document.createElement('li');
-            let attackStamLoss = document.createElement('li');
+            let attackDuration = document.createElement('p');
+            let attackPower = document.createElement('p');
+            let attackCrit = document.createElement('p');
+            let attackEnergieDelta = document.createElement('p');
+            let attackStamLoss = document.createElement('p');
+
+            attackElementList.id = `${attackName}`;
+            attackElementList.style.display = 'none';
 
             let type_atk = document.createElement('img');
-            attackType.textContent = Pokemon.all_pokemons[pok_id].attacks[i].type.nom;
+            type_atk.src = `../css/${Pokemon.all_pokemons[pok_id].attacks[i].type.nom}.ico`
+            Nomtype.textContent= Pokemon.all_pokemons[pok_id].attacks[i].type.nom;
+            attackType.appendChild(type_atk);
+            attackType.appendChild(Nomtype);
             attackPower.textContent = "Power : " + Pokemon.all_pokemons[pok_id].attacks[i].power;
             attackDuration.textContent = "Duration : " + Pokemon.all_pokemons[pok_id].attacks[i].duration;
             attackCrit.textContent = "Critical Chance : " + Pokemon.all_pokemons[pok_id].attacks[i].critical_chance;
@@ -263,7 +285,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 attackElementList.appendChild(attackStamLoss);
                 atk_f.appendChild(attackElementList);
             }
+
+            attackElement.addEventListener('click', function(event) {
+                if (attackElementList.style.display === 'block') {
+                    attackElementList.style.display = 'none';
+                } else {
+                    attackElementList.style.display = 'block';
+                }
+            });
+
         }
+
 
         info_atk.classList.add("atk");
         // Ajoutez les éléments atk_c et atk_f une seule fois après la boucle
@@ -356,7 +388,7 @@ function changeColor(type, elem) {
             break;
         case 'Electric':
             text = '#000';
-            colorB = '#fffc63';
+            colorB = '#d4b755';
             break;
         case 'Steel':
             text = '#000';
@@ -395,7 +427,7 @@ function changeColor(type, elem) {
             colorB = '#e9e';
             break;
         case 'Bug':
-            text = '#fff';
+            text = '#000';
             colorB = '#ab2';
             break;
         case 'Dragon':
