@@ -35,3 +35,6 @@ tbody>tr:nth-of-type(even) {
     z-index: 1;
 }
 
+ul {
+    list-style-image: url('../css/pokeball.png');
+}
