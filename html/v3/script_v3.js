@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Créer l'élément base atk, def et stam
         var info = document.createElement('p');
-        info.appendChild(document.createTextNode("Attaque de base : " + Pokemon.all_pokemons[pok_id].base_attack + " / Défense de base : " + Pokemon.all_pokemons[pok_id].base_defense + " / Endurance : " + Pokemon.all_pokemons[pok_id].base_stamina));
+        info.appendChild(document.createTextNode("Endurance : " + Pokemon.all_pokemons[pok_id].base_stamina + " / Attaque de base : " + Pokemon.all_pokemons[pok_id].base_attack + " / Défense de base : " + Pokemon.all_pokemons[pok_id].base_defense));
         popup.appendChild(info);
 
         // Créer l'élément liste atk 
@@ -313,7 +313,7 @@ function changeColor(type, elem) {
             break;
         case 'Fire':
             text = '#fff';
-            colorB = '#f42';
+            colorB = '#d35d0f';
             break;
         case 'Water':
             text = '#fff';
