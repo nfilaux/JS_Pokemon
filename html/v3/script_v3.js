@@ -181,21 +181,31 @@ document.addEventListener("DOMContentLoaded", function () {
         description.appendChild(info_type)
 
         changeColor(Pokemon.all_pokemons[pok_id].types[0].nom, popup)
-
+     
         // Créer l'élément generation 
         var info_gen = document.createElement('p');
         info_gen.appendChild(document.createTextNode("Generation : " + Pokemon.all_pokemons[pok_id]._generation));
         description.appendChild(info_gen);
 
         div.appendChild(description);
-        popup.appendChild(div);
-
+        popup.appendChild(div)
         div.classList.add("info");
-
+    
         // Créer l'élément base atk, def et stam
-        var info = document.createElement('p');
-        info.appendChild(document.createTextNode("Endurance : " + Pokemon.all_pokemons[pok_id].base_stamina + " / Attaque de base : " + Pokemon.all_pokemons[pok_id].base_attack + " / Défense de base : " + Pokemon.all_pokemons[pok_id].base_defense));
-        popup.appendChild(info);
+        let info_base = document.createElement('div');
+        var info_e = document.createElement('p');
+        var info_a = document.createElement('p');
+        var info_d = document.createElement('p');
+        info_e.appendChild(document.createTextNode("Endurance - " + Pokemon.all_pokemons[pok_id].base_stamina));
+        info_a.appendChild(document.createTextNode("Attaque -  " + Pokemon.all_pokemons[pok_id].base_attack));
+        info_d.appendChild(document.createTextNode("Défense - " + Pokemon.all_pokemons[pok_id].base_defense));
+        info_base.appendChild(info_e);
+        info_base.appendChild(info_a);
+        info_base.appendChild(info_d);
+
+        info_base.classList.add("base");
+        popup.appendChild(info_base);
+        
 
         // Créer l'élément liste atk 
         var info_atk = document.createElement('div')
@@ -217,20 +227,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Créez un nouvel élément p pour chaque attaque
             let attackElement = document.createElement('li');
-            let attackTypeList = document.createElement('ul');
+            let attackElementList = document.createElement('ul');
             let attackType = document.createElement('li');
-            attackElement.setAttribute('src', "../css/pokeball.png");
             attackElement.textContent = attackName;
+            let attackDuration = document.createElement('li');
+            let attackPower = document.createElement('li');
+            let attackCrit = document.createElement('li');
+            let attackEnergieDelta = document.createElement('li');
+            let attackStamLoss = document.createElement('li');
+
+            let type_atk = document.createElement('img');
             attackType.textContent = Pokemon.all_pokemons[pok_id].attacks[i].type.nom;
+            attackPower.textContent = "Power : " + Pokemon.all_pokemons[pok_id].attacks[i].power;
+            attackDuration.textContent = "Duration : " + Pokemon.all_pokemons[pok_id].attacks[i].duration;
+            attackCrit.textContent = "Critical Chance : " + Pokemon.all_pokemons[pok_id].attacks[i].critical_chance;
+            attackEnergieDelta.textContent = "Energy Delta : " + Pokemon.all_pokemons[pok_id].attacks[i].energy_delta;
+            attackStamLoss.textContent = "Stamina loss Scaler : " + Pokemon.all_pokemons[pok_id].attacks[i].stamina_loss_scaler;
 
             if (Pokemon.all_pokemons[pok_id].attacks[i].form === "charged") {
                 atk_c.appendChild(attackElement);
-                attackTypeList.appendChild(attackType);
-                atk_c.appendChild(attackTypeList);
+                attackElementList.appendChild(attackType);
+                attackElementList.appendChild(attackPower);
+                attackElementList.appendChild(attackDuration);
+                attackElementList.appendChild(attackCrit);
+                attackElementList.appendChild(attackEnergieDelta);
+                attackElementList.appendChild(attackStamLoss);
+                atk_c.appendChild(attackElementList);
             } else {
                 atk_f.appendChild(attackElement);
-                attackTypeList.appendChild(attackType);
-                atk_f.appendChild(attackTypeList);
+                attackElementList.appendChild(attackType);
+                attackElementList.appendChild(attackPower);
+                attackElementList.appendChild(attackDuration);
+                attackElementList.appendChild(attackCrit);
+                attackElementList.appendChild(attackEnergieDelta);
+                attackElementList.appendChild(attackStamLoss);
+                atk_f.appendChild(attackElementList);
             }
         }
 
