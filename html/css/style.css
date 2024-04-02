@@ -1,40 +1,184 @@
+body {
+  background-color: #14409e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo {
+  margin: 3em auto;
+}
+
 table {
-    border-collapse: collapse;
-    border: 2px solid rgb(140 140 140);
-    font-family: sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+  border-collapse: collapse;
+  border: 3px solid rgb(54, 38, 38);
+  font-family: sans-serif;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  text-align: center;
+  margin: auto;
 }
 
 thead {
-    background-color: rgb(228 240 245);
+  background-color: rgb(228 240 245);
+  position: sticky;
+  top: 0px;
 }
 
 th,
 td {
-    border: 1px solid rgb(160 160 160);
-    padding: 8px 10px;
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
 }
 
 td:last-of-type {
-    text-align: center;
+  text-align: center;
+}
+
+tbody {
+  background-color: #fcfcfc;
 }
 
 tbody>tr:nth-of-type(even) {
-    background-color: rgb(237 238 242);
+  background-color: rgb(237 238 242);
 }
 
- /* Style pour la popup */
- .popup {
-    display: none; /* Cache la popup par défaut */
-    position: absolute;
-    background-color: lightblue;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    z-index: 1;
+.bouton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 2em;
 }
 
-ul {
-    list-style-image: url('../css/pokeball.png');
+.popup {
+  display: none;
+  position: absolute;
+  background-color: lightblue;
+  color: #000;
+  padding: 10px;
+  border: 5px solid #f8f400;
+  border-radius: 10px;
+  z-index: 1;
+  left: 10px;
+  top: 100px;
+  position: fixed;
+
+}
+
+.info img {
+  background-color: #fff;
+  border: 2px solid #f8f400;
+  border-radius: 10px;
+  padding: 5px;
+  width: fit-content;
+  height: fit-content;
+  margin-right: 2em;
+}
+
+.info div div img {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  margin: 0 5px 0 5px;
+}
+
+.info div div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.info div div p {
+  margin: 0;
+}
+
+.info div h4{
+  margin: 15px auto 15px auto;
+}
+
+.base {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.base p{
+  border-radius: 10px;
+  border: 2px solid #f8f400;
+  background-color: #fff;
+  color:#000;
+  padding: 10px 20px;
+}
+
+.popupimg {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  padding: 10px;
+  border: 2px solid #424242;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+input {
+  width: 10em;
+  position: relative;
+  height: 3.5em;
+  border: 3px ridge #f8f400;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  transition: 0.2s;
+  border-radius: 0.3em;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+input:disabled {
+  background-color: #546382;
+  border: 3px ridge #bababa;
+}
+
+
+input::before {
+  content: "";
+  transform-origin: center;
+  position: absolute;
+  top: 80%;
+  left: 3%;
+  width: 95%;
+  height: 40%;
+  background-color: #f8f400;
+  transition: 0.5s;
+}
+
+input:hover::before,
+input:hover::after {
+  transform: scale(0)
+}
+
+input:hover:enabled {
+  box-shadow: inset 0px 0px 25px #a0c207;
+}
+
+.info,
+.atk {
+  display: flex;
+  flex-direction: row;
+}
+
+.atk {
+  justify-content: space-evenly;
+}
+
+
+@media only screen and (max-width: 700px) {
+
+  table td {
+    width: 30%;
+    /* Deux colonnes par ligne */
+    box-sizing: border-box;
+  }
 }

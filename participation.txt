@@ -1,0 +1,6 @@
+Class Pokemon : 50% Esteban, 50% Nathan
+Class Type : 100% Nathan
+Class Attack : 80% Esteban, 20% Nathan
+Fonction import : 50% Esteban, 50% Nathan
+Page test.html : 100% Esteban
+Test test.js :  40% Esteban, 60% Nathan
