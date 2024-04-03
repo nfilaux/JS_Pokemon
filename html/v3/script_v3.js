@@ -137,8 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
     
-
- 
     // Écouteurs d'événements pour chaque élément de la liste de Pokémon
     for (let i = 0; i < pokemonList.length; i++) {
         pokemonList[i].addEventListener("click", function (event) {
@@ -168,10 +166,19 @@ document.addEventListener("DOMContentLoaded", function () {
         div.appendChild(image);
 
         let description = document.createElement('div');
-        // Créer l'élément id et nom
         var id = document.createElement('h4');
-        id.appendChild(document.createTextNode(Pokemon.all_pokemons[pok_id].pokemon_id + " " + Pokemon.all_pokemons[pok_id].pokemon_name));
-        description.appendChild(id);
+        var id_text = String(Pokemon.all_pokemons[pok_id].pokemon_id);
+        while (id_text.length < 3) {
+            id_text = '0' + id_text;
+        }
+        id.appendChild(document.createTextNode("#" + id_text));
+        popup.appendChild(id);
+        id.classList.add("id");
+        // Créer l'élément nom
+        var nom = document.createElement('h4');
+        nom.appendChild(document.createTextNode(Pokemon.all_pokemons[pok_id].pokemon_name));
+        description.appendChild(nom);
+        nom.id = "nom";
 
         // Créer l'élément type
         let info_type = document.createElement('div');
@@ -203,6 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
         description.appendChild(info_gen);
 
         div.appendChild(description);
+        description.classList.add("description");
         popup.appendChild(div)
         div.classList.add("info");
     
@@ -245,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let attackElementList = document.createElement('div');
             let attackType = document.createElement('div');
             let Nomtype = document.createElement('p');
-            attackElement.textContent = attackName;
+            attackElement.textContent = attackName + " ⬅";
             let attackDuration = document.createElement('p');
             let attackPower = document.createElement('p');
             let attackCrit = document.createElement('p');
@@ -372,7 +380,7 @@ function changeColor(type, elem) {
             break;
         case 'Ground':
             text = '#fff';
-            colorB = '#db5';
+            colorB = '#D2B48C';
             break;
         case 'Fire':
             text = '#fff';
@@ -388,7 +396,7 @@ function changeColor(type, elem) {
             break;
         case 'Electric':
             text = '#000';
-            colorB = '#d4b755';
+            colorB = '#ff9110';
             break;
         case 'Steel':
             text = '#000';
@@ -415,7 +423,7 @@ function changeColor(type, elem) {
             colorB = '#66b';
             break;
         case 'Grass':
-            colorB = '#7c5';
+            colorB = '#0d5';
             text = '#000';
             break;
         case 'Fighting':
@@ -428,7 +436,7 @@ function changeColor(type, elem) {
             break;
         case 'Bug':
             text = '#000';
-            colorB = '#ab2';
+            colorB = '#7c5';
             break;
         case 'Dragon':
             text = '#fff';
@@ -443,6 +451,6 @@ function changeColor(type, elem) {
             text = '#000';
             break;
     }
-    elem.style.color = text;
+    elem.style.color = text;    
     elem.style.backgroundColor = colorB;
 }

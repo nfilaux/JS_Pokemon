@@ -64,6 +64,7 @@ tbody>tr:nth-of-type(even) {
   position: fixed;
   overflow: auto;
   max-height: 45em;
+  width: 30em;
   box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.6);
 }
 
@@ -129,6 +130,23 @@ tbody>tr:nth-of-type(even) {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
+.id{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin: 0;
+  font-size: 1.2em;
+}
+
+#nom {
+  font-size: 1.5em;
+  border-bottom: #f8be00 4px solid;
+}
+
+.description{
+  width: 50%;
+}
+
 input {
   width: 10em;
   position: relative;
@@ -183,19 +201,31 @@ input:hover:enabled {
 
 li {
   list-style-image: url("../css/pokeball.png");
+  margin: 0.5em 0;
 }
-
 
 .atk img {
   width: 20px;
   height: 20px;
   margin-right: 5px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
 }
 
 .atk div ul div div{
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.atk div ul li {
+  height: fit-content;
+  width: 8em;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
 }
 
 @media only screen and (max-width: 700px) {
