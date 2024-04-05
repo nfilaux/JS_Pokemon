@@ -120,7 +120,7 @@ form_suiv.action = `pokemons_v3.html?page=${parseInt(poke)}`
 const pokemonImages = document.querySelectorAll('#pokemonBody img');
 
 document.addEventListener("DOMContentLoaded", function () {
-    const pokemonList = document.getElementById("pokemonTable").getElementsByTagName("tr");
+    const pokemonList = document.getElementById("pokemonBody").getElementsByTagName("tr");
     const popup = document.getElementById("popup");
 
     popup.addEventListener('mouseenter', function() {
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener('click', function(event) {
-        if (!popup.contains(event.target) && !event.target.closest('#pokemonTable')) {
+        if (!popup.contains(event.target) && !event.target.closest('#pokemonBody')) {
             popup.style.display = 'none';
         }
     });
