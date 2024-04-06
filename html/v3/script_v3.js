@@ -9,7 +9,6 @@
 ● image (en taille miniature, adaptée à la hauteur des autres champs
 d’information)
 */
-
 const keys = Object.keys(Pokemon.all_pokemons)
 
 var body_table = document.getElementById('pokemonBody')
@@ -127,6 +126,7 @@ function desactiveBouton() {
     }
 }
 
+
 //redirige en haut de tableau
 const button_p = document.getElementById("btn-prec");
 const button_s = document.getElementById("btn-suiv");
@@ -139,14 +139,11 @@ button_p.addEventListener("click", function () {
     debut_tab.scrollIntoView();
 });
 
-
 //--------------------------------------------------------------------------------------
 
-//detail 
-
-const pokemonImages = document.querySelectorAll('#pokemonBody img');
-
-document.addEventListener("DOMContentLoaded", function () {
+//details
+window.addEventListener("load", function () {
+    const pokemonImages = document.querySelectorAll('#pokemonBody img');
     const pokemonList = document.getElementById("pokemonBody").getElementsByTagName("tr");
     const popup = document.getElementById("popup");
 
@@ -362,141 +359,138 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(Pokemon.all_pokemons[pok_id]);
     }
 
-});
+    // image 
+    pokemonImages.forEach(image => {
+        var popup = document.getElementById("popupimg");
+        var thumbnails = document.createElement('img');
 
+        image.addEventListener('mouseover', function (event) {
+            // Enlever le "MS" du nom de fichier
+            var nomFichierSansMS = image.src.replace("MS", "");
 
-// image 
+            // Remplacer "sprites" par "thumbnails"
+            var nomFichierModifie = nomFichierSansMS.replace("sprites", "thumbnails");
 
-pokemonImages.forEach(image => {
-    var popup = document.getElementById("popupimg");
-    var thumbnails = document.createElement('img');
+            popup.style.display = "block";
 
-    image.addEventListener('mouseover', function (event) {
-        // Enlever le "MS" du nom de fichier
-        var nomFichierSansMS = image.src.replace("MS", "");
+            // Définition des attributs de l'image
+            thumbnails.setAttribute('src', nomFichierModifie);
 
-        // Remplacer "sprites" par "thumbnails"
-        var nomFichierModifie = nomFichierSansMS.replace("sprites", "thumbnails");
+            // Positionner la popup près du curseur de la souris
+            var mouseX = event.clientX;
+            var mouseY = event.clientY;
+            var offset = 10; // Décalage de la popup par rapport au curseur
 
-        popup.style.display = "block";
+            // Calculer la position verticale de la popup en tenant compte de l'espace disponible
+            var popupTop = mouseY + scrollY + offset;
 
-        // Définition des attributs de l'image
-        thumbnails.setAttribute('src', nomFichierModifie);
+            // Calculer la position horizontale de la popup en tenant compte de l'espace disponible
+            var popupLeft = mouseX + scrollX + offset;
+            var popupWidth = popup.offsetWidth;
+            var windowWidth = window.innerWidth;
 
-        // Positionner la popup près du curseur de la souris
-        var mouseX = event.clientX;
-        var mouseY = event.clientY;
-        var offset = 10; // Décalage de la popup par rapport au curseur
+            // Si la popup dépasse à droite de la fenêtre, la placer à gauche du curseur
+            if (popupLeft + popupWidth > windowWidth) {
+                popupLeft = mouseX + scrollX - popupWidth - offset;
+            }
 
-        // Calculer la position verticale de la popup en tenant compte de l'espace disponible
-        var popupTop = mouseY + scrollY + offset;
+            popup.style.left = popupLeft + 'px';
+            popup.style.top = popupTop + 'px';
 
-        // Calculer la position horizontale de la popup en tenant compte de l'espace disponible
-        var popupLeft = mouseX + scrollX + offset;
-        var popupWidth = popup.offsetWidth;
-        var windowWidth = window.innerWidth;
+            popup.appendChild(thumbnails);
 
-        // Si la popup dépasse à droite de la fenêtre, la placer à gauche du curseur
-        if (popupLeft + popupWidth > windowWidth) {
-            popupLeft = mouseX + scrollX - popupWidth - offset;
+        });
+
+        image.addEventListener('mouseout', function () {
+            popup.style.display = "none";
+            popup.removeChild(thumbnails); // Suppression de l'image du popup
+        });
+    });
+
+    //changement de couleur
+
+    function changeColor(type, elem) {
+        var colorB;
+        var text;
+        switch (type) {
+            case 'Rock':
+                text = '#fff';
+                colorB = '#ba6';
+                break;
+            case 'Ground':
+                text = '#fff';
+                colorB = '#D2B48C';
+                break;
+            case 'Fire':
+                text = '#fff';
+                colorB = '#d35d0f';
+                break;
+            case 'Water':
+                text = '#fff';
+                colorB = '#39f';
+                break;
+            case 'Psychic':
+                text = '#fff';
+                colorB = '#f59';
+                break;
+            case 'Electric':
+                text = '#000';
+                colorB = '#ff9110';
+                break;
+            case 'Steel':
+                text = '#000';
+                colorB = '#aab';
+                break;
+            case 'Normal':
+                text = '#000';
+                colorB = '#aa9';
+                break;
+            case 'Flying':
+                text = '#000';
+                colorB = '#89f';
+                break;
+            case 'Ice':
+                text = '#000';
+                colorB = '#6cf';
+                break;
+            case 'Poison':
+                text = '#fff';
+                colorB = '#a59';
+                break;
+            case 'Ghost':
+                text = '#fff';
+                colorB = '#66b';
+                break;
+            case 'Grass':
+                colorB = '#0d5';
+                text = '#000';
+                break;
+            case 'Fighting':
+                colorB = '#b54';
+                text = '#fff';
+                break;
+            case 'Fairy':
+                text = '#000';
+                colorB = '#e9e';
+                break;
+            case 'Bug':
+                text = '#000';
+                colorB = '#7c5';
+                break;
+            case 'Dragon':
+                text = '#fff';
+                colorB = '#76e';
+                break;
+            case 'Dark':
+                text = '#fff';
+                colorB = '#754';
+                break;
+            default:
+                colorB = '#FFFFFF';
+                text = '#000';
+                break;
         }
-
-        popup.style.left = popupLeft + 'px';
-        popup.style.top = popupTop + 'px';
-
-        popup.appendChild(thumbnails);
-
-    });
-
-    image.addEventListener('mouseout', function () {
-        popup.style.display = "none";
-        popup.removeChild(thumbnails); // Suppression de l'image du popup
-    });
-});
-
-//changement de couleur
-
-function changeColor(type, elem) {
-    var colorB;
-    var text;
-    switch (type) {
-        case 'Rock':
-            text = '#fff';
-            colorB = '#ba6';
-            break;
-        case 'Ground':
-            text = '#fff';
-            colorB = '#D2B48C';
-            break;
-        case 'Fire':
-            text = '#fff';
-            colorB = '#d35d0f';
-            break;
-        case 'Water':
-            text = '#fff';
-            colorB = '#39f';
-            break;
-        case 'Psychic':
-            text = '#fff';
-            colorB = '#f59';
-            break;
-        case 'Electric':
-            text = '#000';
-            colorB = '#ff9110';
-            break;
-        case 'Steel':
-            text = '#000';
-            colorB = '#aab';
-            break;
-        case 'Normal':
-            text = '#000';
-            colorB = '#aa9';
-            break;
-        case 'Flying':
-            text = '#000';
-            colorB = '#89f';
-            break;
-        case 'Ice':
-            text = '#000';
-            colorB = '#6cf';
-            break;
-        case 'Poison':
-            text = '#fff';
-            colorB = '#a59';
-            break;
-        case 'Ghost':
-            text = '#fff';
-            colorB = '#66b';
-            break;
-        case 'Grass':
-            colorB = '#0d5';
-            text = '#000';
-            break;
-        case 'Fighting':
-            colorB = '#b54';
-            text = '#fff';
-            break;
-        case 'Fairy':
-            text = '#000';
-            colorB = '#e9e';
-            break;
-        case 'Bug':
-            text = '#000';
-            colorB = '#7c5';
-            break;
-        case 'Dragon':
-            text = '#fff';
-            colorB = '#76e';
-            break;
-        case 'Dark':
-            text = '#fff';
-            colorB = '#754';
-            break;
-        default:
-            colorB = '#FFFFFF';
-            text = '#000';
-            break;
+        elem.style.color = text;
+        elem.style.backgroundColor = colorB;
     }
-    elem.style.color = text;
-    elem.style.backgroundColor = colorB;
-}
+});
