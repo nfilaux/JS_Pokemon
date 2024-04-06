@@ -3,11 +3,33 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Pokémons v3</title>
+    <title>Liste des Pokémons v4</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
+    <fieldset class="filtres">
+        <legend>Filtres</legend>
+
+        <div>
+            <label for="genF">Génération</label>
+            <select name="genF" id="genF">
+                <option value="0">Toutes</option>
+            </select>
+        </div>
+        <div>
+            <label for="typeF">Type</label>
+            <select name="typeF" id="typeF">
+                <option value="0">Toutes</option>
+            </select>
+        </div>
+        <div>
+            <label for="nomF">Nom</label>
+            <input type="nomF" id="nomF">
+        </div>
+    </fieldset>
+
+
     <img class="logo" src="../css/images/logo_pokemon.png" alt="logo pokemon" title="logo pokemon" />
     <div id="pokemonContainer">
         <table class="pokemonTable">
@@ -29,8 +51,8 @@
         </table>
     </div>
     <div class="bouton">
-        <button onclick="tablePrec()" id="btn-prec" name="precedent">SUIV</button>
-        <button onclick="TableSuiv()" id="btn-suiv" name="suivant">PREC</button>
+        <button onclick="tablePrec()" id="btn-prec" name="precedent">PREC</button>
+        <button onclick="TableSuiv()" id="btn-suiv" name="suivant">SUIV</button>
     </div>
 
 

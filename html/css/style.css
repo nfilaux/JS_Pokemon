@@ -254,6 +254,39 @@ li {
   text-align: center;
 }
 
+/* -------------------------------------------- Bloc pour filtres ------------------------------- */
+.filtres input {
+  width: 80px;
+}
+
+.filtres select {
+  width: 88px
+}
+
+.filtres div {
+  margin: 20px 0;
+}
+
+.filtres {
+  background-color: white;
+  padding: 0 30px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  z-index: 1;
+  right: 4vw;
+  top: 40vh;
+  position: fixed;
+  max-height: 45em;
+  width: 200px;
+  box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.6);
+}
+
+.filtres div {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 @media only screen and (max-width: 700px) {
 
   table,

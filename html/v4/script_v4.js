@@ -9,6 +9,8 @@
 ● image (en taille miniature, adaptée à la hauteur des autres champs
 d’information)
 */
+
+// recupre les clés de tous les pokemons
 const keys = Object.keys(Pokemon.all_pokemons)
 
 var body_table = document.getElementById('pokemonBody')
@@ -18,7 +20,11 @@ function tablePrec() {
 
     let t_poke_prec = 0;
     while (t_poke_prec < 25 && debut > 0) {
-        if (Pokemon.all_pokemons[debut] != undefined && Pokemon.all_pokemons[debut] != null) {
+        if ((Pokemon.all_pokemons[debut] != undefined && Pokemon.all_pokemons[debut] != null) &&
+            (Pokemon.all_pokemons[debut].generation == filtreGen.selectedOptions[0].value || filtreGen.selectedOptions[0].value == "0") &&
+            (Pokemon.all_pokemons[debut].pokemon_name.includes(filtreNom.value) || filtreNom.value == "") &&
+            (filtreType.selectedOptions[0].value == "0" || Pokemon.all_pokemons[debut].types[0].nom == filtreType.selectedOptions[0].value ||
+                (Pokemon.all_pokemons[debut].types[1] != undefined && Pokemon.all_pokemons[debut].types[1].nom == filtreType.selectedOptions[0].value))) {
             t_poke_prec++;
         }
         debut--;
@@ -40,68 +46,73 @@ function chargeTable() {
     poke = debut;
     while (total < 25 && poke <= keys[keys.length - 1]) {
         if (Pokemon.all_pokemons[poke] != undefined && Pokemon.all_pokemons[poke] != null) {
-            total++;
+            if ((Pokemon.all_pokemons[poke].generation == filtreGen.selectedOptions[0].value || filtreGen.selectedOptions[0].value == "0") &&
+                (Pokemon.all_pokemons[poke].pokemon_name.includes(filtreNom.value) || filtreNom.value == "") &&
+                (filtreType.selectedOptions[0].value == "0" || Pokemon.all_pokemons[poke].types[0].nom == filtreType.selectedOptions[0].value ||
+                    (Pokemon.all_pokemons[poke].types[1] != undefined && Pokemon.all_pokemons[poke].types[1].nom == filtreType.selectedOptions[0].value))) {
 
-            // création de la ligne
-            let ligne = document.createElement('tr')
-            body_table.appendChild(ligne)
+                total++;
+                // création de la ligne
+                let ligne = document.createElement('tr')
+                body_table.appendChild(ligne)
 
-            // création colonne id
-            let id = document.createElement('td')
-            id.textContent = Pokemon.all_pokemons[poke].pokemon_id
-            ligne.appendChild(id)
+                // création colonne id
+                let id = document.createElement('td')
+                id.textContent = Pokemon.all_pokemons[poke].pokemon_id
+                ligne.appendChild(id)
 
-            // création colonne nom
-            let nom = document.createElement('td')
-            nom.textContent = Pokemon.all_pokemons[poke].pokemon_name
-            ligne.appendChild(nom)
+                // création colonne nom
+                let nom = document.createElement('td')
+                nom.textContent = Pokemon.all_pokemons[poke].pokemon_name
+                ligne.appendChild(nom)
 
-            // création colonne generation
-            let gen = document.createElement('td')
-            gen.textContent = Pokemon.all_pokemons[poke].generation
-            ligne.appendChild(gen)
+                // création colonne generation
+                let gen = document.createElement('td')
+                gen.textContent = Pokemon.all_pokemons[poke].generation
+                ligne.appendChild(gen)
 
-            // création colonne types
-            let types = document.createElement('td')
-            if (Pokemon.all_pokemons[poke].types.length === 1) {
-                types.textContent = Pokemon.all_pokemons[poke].types[0].nom
+                // création colonne types
+                let types = document.createElement('td')
+                if (Pokemon.all_pokemons[poke].types.length === 1) {
+                    types.textContent = Pokemon.all_pokemons[poke].types[0].nom
+                }
+                else {
+                    types.textContent = `${Pokemon.all_pokemons[poke].types[0].nom} / ${Pokemon.all_pokemons[poke].types[1].nom}`
+                }
+                ligne.appendChild(types)
+
+                // création colonne stamina
+                let stam = document.createElement('td')
+                stam.textContent = Pokemon.all_pokemons[poke].base_stamina
+                ligne.appendChild(stam)
+
+                // création colonne attack
+                let atk = document.createElement('td')
+                atk.textContent = Pokemon.all_pokemons[poke].base_attack
+                ligne.appendChild(atk)
+
+                // création colonne defense
+                let def = document.createElement('td')
+                def.textContent = Pokemon.all_pokemons[poke].base_defense
+                ligne.appendChild(def)
+
+                // création colonne spite
+                let img = document.createElement('td')
+                let sprite = document.createElement('img')
+                let img_url = String(Pokemon.all_pokemons[poke].pokemon_id)
+                while (img_url.length < 3) {
+                    img_url = '0' + img_url
+                }
+                if (Pokemon.all_pokemons[poke].generation <= 7) {
+                    img_url = img_url + 'MS'
+                }
+
+                sprite.src = `../webp/sprites/${img_url}.webp`
+                img.appendChild(sprite)
+                ligne.appendChild(img)
+                // poke suivant
             }
-            else {
-                types.textContent = `${Pokemon.all_pokemons[poke].types[0].nom} / ${Pokemon.all_pokemons[poke].types[1].nom}`
-            }
-            ligne.appendChild(types)
-
-            // création colonne stamina
-            let stam = document.createElement('td')
-            stam.textContent = Pokemon.all_pokemons[poke].base_stamina
-            ligne.appendChild(stam)
-
-            // création colonne attack
-            let atk = document.createElement('td')
-            atk.textContent = Pokemon.all_pokemons[poke].base_attack
-            ligne.appendChild(atk)
-
-            // création colonne defense
-            let def = document.createElement('td')
-            def.textContent = Pokemon.all_pokemons[poke].base_defense
-            ligne.appendChild(def)
-
-            // création colonne spite
-            let img = document.createElement('td')
-            let sprite = document.createElement('img')
-            let img_url = String(Pokemon.all_pokemons[poke].pokemon_id)
-            while (img_url.length < 3) {
-                img_url = '0' + img_url
-            }
-            if (Pokemon.all_pokemons[poke].generation <= 7) {
-                img_url = img_url + 'MS'
-            }
-
-            sprite.src = `../webp/sprites/${img_url}.webp`
-            img.appendChild(sprite)
-            ligne.appendChild(img)
         }
-        // poke suivant
         poke++;
     }
     desactiveBouton();
@@ -493,4 +504,71 @@ window.addEventListener("load", function () {
         elem.style.color = text;
         elem.style.backgroundColor = colorB;
     }
+});
+
+
+/* -------------------- filtres ----------------------*/
+
+// recupere les input de nos filtres
+var filtreGen = document.getElementById('genF');
+var filtreType = document.getElementById('typeF');
+var filtreNom = document.getElementById('nomF');
+
+// ajout des différents choix dans les select
+
+const generations = new Set();
+const types = new Set();
+
+for (let objet_poke in Pokemon.all_pokemons) {
+    generations.add(Pokemon.all_pokemons[objet_poke].generation);
+    for (let type of Pokemon.all_pokemons[objet_poke].types) {
+        types.add(type.nom);
+    }
+}
+
+// ajout des options dans le select generation
+for (const generation of generations) {
+    // créé une nouvelle option
+    const optionGen = document.createElement("option");
+    // definit la valeur de l'option
+    optionGen.value = generation;
+    // definit le texte de l'option
+    optionGen.textContent = generation;
+    // ajoute l'option au select genF
+    filtreGen.appendChild(optionGen);
+}
+
+// ajout des options dans le select type
+for (const type of types) {
+    // créé une nouvelle option
+    const optionType = document.createElement("option");
+    // definit la valeur de l'option
+    optionType.value = type;
+    // definit le texte de l'option
+    optionType.textContent = type;
+    // definit l'option au select typeF
+    filtreType.appendChild(optionType);
+}
+
+// ajout des listeners pour les filtres
+filtreGen.addEventListener("change", function () {
+    // reset tableau
+    body_table.innerHTML = "";
+    //reset debut
+    debut = 0;
+    chargeTable();
+});
+filtreType.addEventListener("change", function () {
+    // reset tableau
+    body_table.innerHTML = "";
+    //reset debut
+    debut = 0;
+    chargeTable();
+});
+filtreNom.addEventListener("change", function () {
+    // reset tableau
+    body_table.innerHTML = "";
+    //reset debut
+    debut = 0;
+    chargeTable();
 });
