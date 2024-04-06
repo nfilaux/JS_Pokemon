@@ -565,7 +565,7 @@ filtreType.addEventListener("change", function () {
     debut = 0;
     chargeTable();
 });
-filtreNom.addEventListener("change", function () {
+filtreNom.addEventListener("input", function () {
     // reset tableau
     body_table.innerHTML = "";
     //reset debut
