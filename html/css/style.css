@@ -6,7 +6,7 @@ body {
   min-width: 400px;
 }
 
-.fleche{
+.fleche {
   position: fixed;
   bottom: 33px;
   right: 11px;
@@ -81,7 +81,7 @@ tbody>tr:nth-of-type(odd) {
   box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.6);
 }
 
-#croix{
+#croix {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -93,7 +93,7 @@ tbody>tr:nth-of-type(odd) {
 }
 
 .popup::-webkit-scrollbar {
-    width: 0px;
+  width: 0px;
 }
 
 .info img {
@@ -125,7 +125,7 @@ tbody>tr:nth-of-type(odd) {
   margin: 0;
 }
 
-.info div h4{
+.info div h4 {
   margin: 15px auto 15px auto;
 }
 
@@ -135,11 +135,11 @@ tbody>tr:nth-of-type(odd) {
   justify-content: space-around;
 }
 
-.base p{
+.base p {
   border-radius: 10px;
   border: 2px solid #f8f400;
   background-color: #fff;
-  color:#000;
+  color: #000;
   padding: 10px 20px;
   margin: 0.5em auto;
 }
@@ -155,7 +155,7 @@ tbody>tr:nth-of-type(odd) {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.id{
+.id {
   position: absolute;
   top: 20px;
   right: 105px;
@@ -169,11 +169,11 @@ tbody>tr:nth-of-type(odd) {
   margin-top: 0.2em;
 }
 
-.description{
+.description {
   width: 50%;
 }
 
-input {
+button {
   width: 10em;
   position: relative;
   height: 3.5em;
@@ -188,13 +188,13 @@ input {
   cursor: pointer;
 }
 
-input:disabled {
+button:disabled {
   background-color: #546382;
   border: 3px ridge #bababa;
 }
 
 
-input::before {
+button::before {
   content: "";
   transform-origin: center;
   position: absolute;
@@ -206,12 +206,12 @@ input::before {
   transition: 0.5s;
 }
 
-input:hover::before,
-input:hover::after {
+button:hover::before,
+button:hover::after {
   transform: scale(0)
 }
 
-input:hover:enabled {
+button:hover:enabled {
   box-shadow: inset 0px 0px 25px #a0c207;
 }
 
@@ -239,7 +239,7 @@ li {
   background-color: #fff;
 }
 
-.atk div ul div div{
+.atk div ul div div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -256,7 +256,12 @@ li {
 
 @media only screen and (max-width: 700px) {
 
-  table,thead,tbody,tr,th,td {
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td {
     display: block;
   }
 
@@ -275,7 +280,7 @@ li {
     position: relative;
     margin-top: -1px;
   }
-  
+
   td::before {
     position: absolute;
     top: 0;
@@ -294,7 +299,7 @@ li {
   td:nth-of-type(even) {
     background-color: rgb(237 238 242);
   }
-  
+
   td:nth-of-type(odd) {
     background-color: #fcfcfc;
   }
