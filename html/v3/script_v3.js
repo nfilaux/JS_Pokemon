@@ -122,6 +122,15 @@ const pokemonImages = document.querySelectorAll('#pokemonBody img');
 document.addEventListener("DOMContentLoaded", function () {
     const pokemonList = document.getElementById("pokemonBody").getElementsByTagName("tr");
     const popup = document.getElementById("popup");
+    
+    document.querySelectorAll('.pokemonTable').forEach(function (table) {
+        let labels = Array.from(table.querySelectorAll('th')).map(function (th){
+            return th.innerText;
+        })
+        table.querySelectorAll('td').forEach(function (td, i){
+            td.setAttribute('data-label', labels[i % labels.length])
+        })
+    })
 
     popup.addEventListener('mouseenter', function() {
         document.body.style.overflow = 'hidden';
@@ -186,14 +195,14 @@ document.addEventListener("DOMContentLoaded", function () {
         let types2 = document.createElement('p')
         if (Pokemon.all_pokemons[pok_id].types.length === 1) {
             types.textContent = Pokemon.all_pokemons[pok_id].types[0].nom
-            type1.src = `../css/${Pokemon.all_pokemons[pok_id].types[0].nom}.ico`
+            type1.src = `../css/images/${Pokemon.all_pokemons[pok_id].types[0].nom}.ico`
             info_type.appendChild(type1)
             info_type.appendChild(types)
         }
         else {
-            type1.src = `../css/${Pokemon.all_pokemons[pok_id].types[0].nom}.ico`
+            type1.src = `../css/images/${Pokemon.all_pokemons[pok_id].types[0].nom}.ico`
             types.textContent = `${Pokemon.all_pokemons[pok_id].types[0].nom} / `
-            type2.src = `../css/${Pokemon.all_pokemons[pok_id].types[1].nom}.ico`
+            type2.src = `../css/images/${Pokemon.all_pokemons[pok_id].types[1].nom}.ico`
             types2.textContent = `${Pokemon.all_pokemons[pok_id].types[1].nom}`
             info_type.appendChild(type1)
             info_type.appendChild(types)
@@ -245,6 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fast.textContent = "Fast : "
         div_f.appendChild(fast)
 
+
         for (let i = 0; i < Pokemon.all_pokemons[pok_id].attacks.length; i++) {
             let attackName = Pokemon.all_pokemons[pok_id].attacks[i].nom;
 
@@ -253,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let attackElementList = document.createElement('div');
             let attackType = document.createElement('div');
             let Nomtype = document.createElement('p');
-            attackElement.textContent = attackName + " ⬅";
+            attackElement.textContent = attackName;
             let attackDuration = document.createElement('p');
             let attackPower = document.createElement('p');
             let attackCrit = document.createElement('p');
@@ -264,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
             attackElementList.style.display = 'none';
 
             let type_atk = document.createElement('img');
-            type_atk.src = `../css/${Pokemon.all_pokemons[pok_id].attacks[i].type.nom}.ico`
+            type_atk.src = `../css/images/${Pokemon.all_pokemons[pok_id].attacks[i].type.nom}.ico`
             Nomtype.textContent= Pokemon.all_pokemons[pok_id].attacks[i].type.nom;
             attackType.appendChild(type_atk);
             attackType.appendChild(Nomtype);
@@ -312,6 +322,15 @@ document.addEventListener("DOMContentLoaded", function () {
         info_atk.appendChild(div_c);
         info_atk.appendChild(div_f);
         popup.appendChild(info_atk);
+
+        let croix = document.createElement('img');
+        croix.src = "../css/images/croix.png";
+        croix.id ="croix";
+        popup.appendChild(croix);
+
+        croix.addEventListener('click', function(event) {
+            popup.style.display = 'none';
+        });
 
         console.log(Pokemon.all_pokemons[pok_id]);
     }
