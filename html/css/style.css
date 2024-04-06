@@ -180,7 +180,7 @@ input {
   border: 3px ridge #f8f400;
   outline: none;
   background-color: transparent;
-  color: white;
+  color: #f8f400;
   transition: 0.2s;
   border-radius: 0.3em;
   font-size: 16px;

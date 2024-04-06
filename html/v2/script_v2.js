@@ -111,3 +111,12 @@ while (t_poke_prec < 25 && debut_prece > 0) {
 
 form_prec.action = `pokemons_v2.html?page=${debut_prece}`
 form_suiv.action = `pokemons_v2.html?page=${parseInt(poke)}`
+
+document.querySelectorAll('.pokemonTable').forEach(function (table) {
+    let labels = Array.from(table.querySelectorAll('th')).map(function (th){
+        return th.innerText;
+    })
+    table.querySelectorAll('td').forEach(function (td, i){
+        td.setAttribute('data-label', labels[i % labels.length])
+    })
+})

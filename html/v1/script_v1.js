@@ -64,3 +64,12 @@ for(let poke in Pokemon.all_pokemons){
     img.appendChild(sprite)
     ligne.appendChild(img)
 }
+
+document.querySelectorAll('.pokemonTable').forEach(function (table) {
+    let labels = Array.from(table.querySelectorAll('th')).map(function (th){
+        return th.innerText;
+    })
+    table.querySelectorAll('td').forEach(function (td, i){
+        td.setAttribute('data-label', labels[i % labels.length])
+    })
+})
