@@ -10,8 +10,10 @@
 d’information)
 */
 
-// recupre les clés de tous les pokemons
-const keys = Object.keys(Pokemon.all_pokemons)
+
+// copie de tous les pokemons
+var objet_pokemons_sort = Object.assign(Pokemon.all_pokemons);
+
 
 var body_table = document.getElementById('pokemonBody')
 var debut = 0;
@@ -20,11 +22,11 @@ function tablePrec() {
 
     let t_poke_prec = 0;
     while (t_poke_prec < 25 && debut > 0) {
-        if ((Pokemon.all_pokemons[debut] != undefined && Pokemon.all_pokemons[debut] != null) &&
-            (Pokemon.all_pokemons[debut].generation == filtreGen.selectedOptions[0].value || filtreGen.selectedOptions[0].value == "0") &&
-            (Pokemon.all_pokemons[debut].pokemon_name.includes(filtreNom.value) || filtreNom.value == "") &&
-            (filtreType.selectedOptions[0].value == "0" || Pokemon.all_pokemons[debut].types[0].nom == filtreType.selectedOptions[0].value ||
-                (Pokemon.all_pokemons[debut].types[1] != undefined && Pokemon.all_pokemons[debut].types[1].nom == filtreType.selectedOptions[0].value))) {
+        if ((objet_pokemons_sort[debut] != undefined && objet_pokemons_sort[debut] != null) &&
+            (objet_pokemons_sort[debut].generation == filtreGen.selectedOptions[0].value || filtreGen.selectedOptions[0].value == "0") &&
+            (objet_pokemons_sort[debut].pokemon_name.includes(filtreNom.value) || filtreNom.value == "") &&
+            (filtreType.selectedOptions[0].value == "0" || objet_pokemons_sort[debut].types[0].nom == filtreType.selectedOptions[0].value ||
+                (objet_pokemons_sort[debut].types[1] != undefined && objet_pokemons_sort[debut].types[1].nom == filtreType.selectedOptions[0].value))) {
             t_poke_prec++;
         }
         debut--;
@@ -48,14 +50,15 @@ function TableSuiv() {
 }
 
 function chargeTable() {
+    var keys = Object.keys(objet_pokemons_sort);
     var total = 0
     poke = debut;
     while (total < 25 && poke <= keys[keys.length - 1]) {
-        if (Pokemon.all_pokemons[poke] != undefined && Pokemon.all_pokemons[poke] != null) {
-            if ((Pokemon.all_pokemons[poke].generation == filtreGen.selectedOptions[0].value || filtreGen.selectedOptions[0].value == "0") &&
-                (Pokemon.all_pokemons[poke].pokemon_name.includes(filtreNom.value) || filtreNom.value == "") &&
-                (filtreType.selectedOptions[0].value == "0" || Pokemon.all_pokemons[poke].types[0].nom == filtreType.selectedOptions[0].value ||
-                    (Pokemon.all_pokemons[poke].types[1] != undefined && Pokemon.all_pokemons[poke].types[1].nom == filtreType.selectedOptions[0].value))) {
+        if (objet_pokemons_sort[poke] != undefined && objet_pokemons_sort[poke] != null) {
+            if ((objet_pokemons_sort[poke].generation == filtreGen.selectedOptions[0].value || filtreGen.selectedOptions[0].value == "0") &&
+                (objet_pokemons_sort[poke].pokemon_name.includes(filtreNom.value) || filtreNom.value == "") &&
+                (filtreType.selectedOptions[0].value == "0" || objet_pokemons_sort[poke].types[0].nom == filtreType.selectedOptions[0].value ||
+                    (objet_pokemons_sort[poke].types[1] != undefined && objet_pokemons_sort[poke].types[1].nom == filtreType.selectedOptions[0].value))) {
 
                 total++;
                 // création de la ligne
@@ -64,52 +67,52 @@ function chargeTable() {
 
                 // création colonne id
                 let id = document.createElement('td')
-                id.textContent = Pokemon.all_pokemons[poke].pokemon_id
+                id.textContent = objet_pokemons_sort[poke].pokemon_id
                 ligne.appendChild(id)
 
                 // création colonne nom
                 let nom = document.createElement('td')
-                nom.textContent = Pokemon.all_pokemons[poke].pokemon_name
+                nom.textContent = objet_pokemons_sort[poke].pokemon_name
                 ligne.appendChild(nom)
 
                 // création colonne generation
                 let gen = document.createElement('td')
-                gen.textContent = Pokemon.all_pokemons[poke].generation
+                gen.textContent = objet_pokemons_sort[poke].generation
                 ligne.appendChild(gen)
 
                 // création colonne types
                 let types = document.createElement('td')
-                if (Pokemon.all_pokemons[poke].types.length === 1) {
-                    types.textContent = Pokemon.all_pokemons[poke].types[0].nom
+                if (objet_pokemons_sort[poke].types.length === 1) {
+                    types.textContent = objet_pokemons_sort[poke].types[0].nom
                 }
                 else {
-                    types.textContent = `${Pokemon.all_pokemons[poke].types[0].nom} / ${Pokemon.all_pokemons[poke].types[1].nom}`
+                    types.textContent = `${objet_pokemons_sort[poke].types[0].nom} / ${objet_pokemons_sort[poke].types[1].nom}`
                 }
                 ligne.appendChild(types)
 
                 // création colonne stamina
                 let stam = document.createElement('td')
-                stam.textContent = Pokemon.all_pokemons[poke].base_stamina
+                stam.textContent = objet_pokemons_sort[poke].base_stamina
                 ligne.appendChild(stam)
 
                 // création colonne attack
                 let atk = document.createElement('td')
-                atk.textContent = Pokemon.all_pokemons[poke].base_attack
+                atk.textContent = objet_pokemons_sort[poke].base_attack
                 ligne.appendChild(atk)
 
                 // création colonne defense
                 let def = document.createElement('td')
-                def.textContent = Pokemon.all_pokemons[poke].base_defense
+                def.textContent = objet_pokemons_sort[poke].base_defense
                 ligne.appendChild(def)
 
                 // création colonne spite
                 let img = document.createElement('td')
                 let sprite = document.createElement('img')
-                let img_url = String(Pokemon.all_pokemons[poke].pokemon_id)
+                let img_url = String(objet_pokemons_sort[poke].pokemon_id)
                 while (img_url.length < 3) {
                     img_url = '0' + img_url
                 }
-                if (Pokemon.all_pokemons[poke].generation <= 7) {
+                if (objet_pokemons_sort[poke].generation <= 7) {
                     img_url = img_url + 'MS'
                 }
 
@@ -131,7 +134,8 @@ window.addEventListener("load", function () {
 
 //test pour les bouton
 function desactiveBouton() {
-    if (debut <= 1) {
+    var keys = Object.keys(objet_pokemons_sort);
+    if (debut <= 0) {
         document.getElementById("btn-prec").disabled = true;
     } else {
         document.getElementById("btn-prec").disabled = false;
@@ -200,8 +204,10 @@ function responsiveThead() {
 }
 
 function ajoutListenerPourPopup() {
+
     var pokemonList = document.getElementById("pokemonBody").getElementsByTagName("tr");
     for (let i = 0; i < pokemonList.length; i++) {
+
         pokemonList[i].addEventListener("click", function (event) {
             const pok_id = pokemonList[i].cells[0].textContent; // Récupérer le id du Pokémon depuis la premiere cellule
             showPopup(pok_id);
@@ -538,9 +544,9 @@ var filtreNom = document.getElementById('nomF');
 const generations = new Set();
 const types = new Set();
 
-for (let objet_poke in Pokemon.all_pokemons) {
-    generations.add(Pokemon.all_pokemons[objet_poke].generation);
-    for (let type of Pokemon.all_pokemons[objet_poke].types) {
+for (let objet_poke in objet_pokemons_sort) {
+    generations.add(objet_pokemons_sort[objet_poke].generation);
+    for (let type of objet_pokemons_sort[objet_poke].types) {
         types.add(type.nom);
     }
 }
@@ -600,3 +606,308 @@ filtreNom.addEventListener("input", function () {
     PrepImages();
     responsiveThead();
 });
+
+
+
+/* --------------------------------- TRIS ---------------------------- */
+
+
+// dictionnaire pour connaitre chaque trie en cours
+var status_tri = {
+    "idC": 0,
+    "nomC": 0,
+    "genC": 0,
+    "typesC": 0,
+    "enduC": 0,
+    "atkC": 0,
+    "defC": 0
+}
+
+for (let propriete in status_tri) {
+    status_tri[propriete] = 0;
+}
+// recupere les titres de colonnes (dans le thhead) pour le tri
+var idC = document.getElementById('idC');
+var nomC = document.getElementById('nomC');
+var genC = document.getElementById('genC');
+var typesC = document.getElementById('typesC');
+var enduC = document.getElementById('enduC');
+var atkC = document.getElementById('atkC');
+var defC = document.getElementById('defC');
+
+// ajoute un ecouteur d'evenements "click" a chaque variable
+idC.addEventListener("click", () => triParColonne("idC"));
+nomC.addEventListener("click", () => triParColonne("nomC"));
+genC.addEventListener("click", () => triParColonne("genC"));
+typesC.addEventListener("click", () => triParColonne("typesC"));
+enduC.addEventListener("click", () => triParColonne("enduC"));
+atkC.addEventListener("click", () => triParColonne("atkC"));
+defC.addEventListener("click", () => triParColonne("defC"));
+
+
+function triParColonne(colonne) {
+    let all_pokemons_sort = [];
+    for (let pok in Pokemon.all_pokemons) {
+        // Ajoute chaque Pokémon au tableau de tous les Pokémon à trier.
+        all_pokemons_sort.push(Pokemon.all_pokemons[pok]);
+    }
+
+    // trie par nom en cas d'égalité de valeur
+    all_pokemons_sort.sort(function (a, b) {
+        let nomA = a.pokemon_name
+        let nomB = b.pokemon_name
+        // Compare les noms des Pokémon pour déterminer l'ordre de tri.
+        return (nomA < nomB) ? -1 : (nomA > nomB) ? 1 : 0;
+    });
+
+    switch (colonne) {
+        case "idC":
+
+
+            all_pokemons_sort.sort(function (a, b) {
+                let idA = a.pokemon_id;
+                let idB = b.pokemon_id;
+                if (status_tri.idC === 0 || status_tri.idC === 2) {
+                    // Compare les id des Pokémons pour déterminer l'ordre de tri.
+                    return (idA < idB) ? -1 : (idA > idB) ? 1 : 0;
+                } else {
+                    return (idA > idB) ? -1 : (idA < idB) ? 1 : 0;
+                }
+            });
+            if (status_tri.idC === 0 || status_tri.idC === 2) {
+                for (let propriete in status_tri) {
+                    status_tri[propriete] = 0;
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                }
+                status_tri.idC = 1;
+            } else {
+                for (let propriete in status_tri) {
+                    status_tri[propriete] = 0;
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                }
+                status_tri.idC = 2;
+            }
+            idC.style.fontWeight = "bolder";
+            idC.style.backgroundColor = "#112a60";
+            break;
+
+
+        case "nomC":
+
+
+            if (status_tri.nomC === 1) {
+                all_pokemons_sort.sort(function (a, b) {
+                    let nomA = a.pokemon_name
+                    let nomB = b.pokemon_name
+                    // Compare les noms des Pokémon pour déterminer l'ordre de tri.
+                    return (nomA > nomB) ? -1 : (nomA < nomB) ? 1 : 0;
+                });
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.nomC = 2;
+            } else {
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.nomC = 1;
+            }
+            nomC.style.fontWeight = "bolder";
+            nomC.style.backgroundColor = "#112a60";
+            break;
+
+
+        case "genC":
+
+            all_pokemons_sort.sort(function (a, b) {
+
+                let genA = a.generation;
+                let genB = b.generation;
+                if (status_tri.genC === 0 || status_tri.genC === 2) {
+                    // Compare les generations des Pokémons pour déterminer l'ordre de tri.
+                    return (genA < genB) ? -1 : (genA > genB) ? 1 : 0;
+                } else {
+                    return (genA > genB) ? -1 : (genA < genB) ? 1 : 0;
+                }
+            });
+            if (status_tri.genC === 0 || status_tri.genC === 2) {
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.genC = 1;
+            } else {
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.genC = 2;
+            }
+            genC.style.fontWeight = "bolder";
+            genC.style.backgroundColor = "#112a60";
+            break;
+
+
+        case "typesC":
+
+            all_pokemons_sort.sort(function (a, b) {
+                if (a.types.length === 1) {
+                    var typeA = a.types[0].nom;
+                } else {
+                    var typeA = a.types[0].nom + a.types[1].nom;
+                }
+
+                if (b.types.length === 1) {
+                    var typeB = b.types[0].nom;
+                } else {
+                    var typeB = b.types[0].nom + b.types[1].nom;
+                }
+                if (status_tri.typesC === 0 || status_tri.typesC === 2) {
+                    // Compare les types des Pokémons pour déterminer l'ordre de tri.
+                    return (typeA < typeB) ? -1 : (typeA > typeB) ? 1 : 0;
+                } else {
+                    return (typeA > typeB) ? -1 : (typeA < typeB) ? 1 : 0;
+                }
+            });
+            if (status_tri.typesC === 0 || status_tri.typesC === 2) {
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.typesC = 1;
+            } else {
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.typesC = 2;
+            }
+            typesC.style.fontWeight = "bolder";
+            typesC.style.backgroundColor = "#112a60";
+            break;
+
+
+        case "enduC":
+
+            all_pokemons_sort.sort(function (a, b) {
+                let enduA = a.base_stamina;
+                let enduB = b.base_stamina;
+                if (status_tri.enduC === 0 || status_tri.enduC === 2) {
+                    // Compare l'endurance des Pokémons pour déterminer l'ordre de tri.
+                    return (enduA < enduB) ? -1 : (enduA > enduB) ? 1 : 0;
+                } else {
+                    return (enduA > enduB) ? -1 : (enduA < enduB) ? 1 : 0;
+                }
+            });
+            if (status_tri.enduC === 0 || status_tri.enduC === 2) {
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.enduC = 1;
+            } else {
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.enduC = 2;
+            }
+            enduC.style.fontWeight = "bolder";
+            enduC.style.backgroundColor = "#112a60";
+            break;
+
+
+        case "atkC":
+
+            all_pokemons_sort.sort(function (a, b) {
+                // Convertit les noms des Pokémon en majuscules pour effectuer une comparaison insensible à la casse.
+                let atkA = a.base_attack;
+                let atkB = b.base_attack;
+                if (status_tri.atkC === 0 || status_tri.atkC === 2) {
+                    // Compare l'attaque des Pokémons pour déterminer l'ordre de tri.
+                    return (atkA < atkB) ? -1 : (atkA > atkB) ? 1 : 0;
+                } else {
+                    return (atkA > atkB) ? -1 : (atkA < atkB) ? 1 : 0;
+                }
+            });
+            if (status_tri.atkC === 0 || status_tri.atkC === 2) {
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.atkC = 1;
+            } else {
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.atkC = 2;
+            }
+            atkC.style.fontWeight = "bolder";
+            atkC.style.backgroundColor = "#112a60";
+            break;
+
+
+        case "defC":
+
+            all_pokemons_sort.sort(function (a, b) {
+                let defA = a.base_defense;
+                let defB = b.base_defense;
+                if (status_tri.defC === 0 || status_tri.defC === 2) {
+                    // Compare les defenses des Pokémons pour déterminer l'ordre de tri.
+                    return (defA < defB) ? -1 : (defA > defB) ? 1 : 0;
+                } else {
+                    return (defA > defB) ? -1 : (defA < defB) ? 1 : 0;
+                }
+            });
+            if (status_tri.defC === 0 || status_tri.defC === 2) {
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.defC = 1;
+            } else {
+                for (let propriete in status_tri) {
+                    document.getElementById(propriete).style.fontWeight = "normal";
+                    document.getElementById(propriete).style.backgroundColor = "#2253be";
+                    status_tri[propriete] = 0;
+                }
+                status_tri.defC = 2;
+            }
+            defC.style.fontWeight = "bolder";
+            defC.style.backgroundColor = "#112a60";
+            break;
+    }
+
+    // on transforme le tableau trié en objet
+    objet_pokemons_sort = {};
+    all_pokemons_sort.forEach((element, index) => {
+        objet_pokemons_sort[index] = element;
+    });
+
+    // reset debut
+    debut = 0;
+
+    // reset tableau
+    body_table.innerHTML = "";
+    // on met à jour la table
+    chargeTable();
+    ajoutListenerPourPopup();
+    PrepImages();
+    responsiveThead();
+}
