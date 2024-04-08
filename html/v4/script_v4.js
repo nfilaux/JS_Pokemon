@@ -22,7 +22,7 @@ function tablePrec() {
     while (t_poke_prec < 25 && debut > 0) {
         if ((Pokemon.all_pokemons[debut] != undefined && Pokemon.all_pokemons[debut] != null) &&
             (Pokemon.all_pokemons[debut].generation == filtreGen.selectedOptions[0].value || filtreGen.selectedOptions[0].value == "0") &&
-            (Pokemon.all_pokemons[debut].pokemon_name.includes(filtreNom.value) || filtreNom.value == "") &&
+            (Pokemon.all_pokemons[debut].pokemon_name.toUpperCase().includes(filtreNom.value.toUpperCase()) || filtreNom.value == "") &&
             (filtreType.selectedOptions[0].value == "0" || Pokemon.all_pokemons[debut].types[0].nom == filtreType.selectedOptions[0].value ||
                 (Pokemon.all_pokemons[debut].types[1] != undefined && Pokemon.all_pokemons[debut].types[1].nom == filtreType.selectedOptions[0].value))) {
             t_poke_prec++;
@@ -53,7 +53,7 @@ function chargeTable() {
     while (total < 25 && poke <= keys[keys.length - 1]) {
         if (Pokemon.all_pokemons[poke] != undefined && Pokemon.all_pokemons[poke] != null) {
             if ((Pokemon.all_pokemons[poke].generation == filtreGen.selectedOptions[0].value || filtreGen.selectedOptions[0].value == "0") &&
-                (Pokemon.all_pokemons[poke].pokemon_name.includes(filtreNom.value) || filtreNom.value == "") &&
+                (Pokemon.all_pokemons[poke].pokemon_name.toUpperCase().includes(filtreNom.value.toUpperCase()) || filtreNom.value == "") &&
                 (filtreType.selectedOptions[0].value == "0" || Pokemon.all_pokemons[poke].types[0].nom == filtreType.selectedOptions[0].value ||
                     (Pokemon.all_pokemons[poke].types[1] != undefined && Pokemon.all_pokemons[poke].types[1].nom == filtreType.selectedOptions[0].value))) {
 
