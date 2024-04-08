@@ -173,46 +173,37 @@ tbody>tr:nth-of-type(odd) {
   width: 50%;
 }
 
+button:disabled {
+  background-color: #546382;
+  border: 3px ridge #bababa;
+  color: #bababa;
+}
+
+button:hover:enabled {
+  box-shadow: inset 0px 0px 25px #3700ff;
+}
+
 button {
   width: 10em;
   position: relative;
   height: 3.5em;
-  border: 3px ridge #f8f400;
+  border: 3px ridge #1479EA;
   outline: none;
   background-color: transparent;
-  color: #f8f400;
-  transition: 0.2s;
+  color: #1479EA;
+  transition: 1s;
   border-radius: 0.3em;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
 
-button:disabled {
-  background-color: #546382;
-  border: 3px ridge #bababa;
-}
-
-
-button::before {
-  content: "";
-  transform-origin: center;
-  position: absolute;
-  top: 80%;
-  left: 3%;
-  width: 95%;
-  height: 40%;
-  background-color: #f8be00;
-  transition: 0.5s;
-}
-
-button:hover::before,
-button:hover::after {
+button:hover::before, button:hover::after {
   transform: scale(0)
 }
 
-button:hover:enabled {
-  box-shadow: inset 0px 0px 25px #a0c207;
+button:hover {
+  box-shadow: inset 0px 0px 25px #1479EA;
 }
 
 .info,
