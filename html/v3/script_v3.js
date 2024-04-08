@@ -133,7 +133,7 @@ function desactiveBouton() {
         document.getElementById("btn-suiv").disabled = false;
     }
 }
-
+    
 
 //redirige en haut de tableau
 const button_p = document.getElementById("btn-prec");
@@ -231,7 +231,7 @@ function PrepImages() {
             // Calculer la position horizontale de la popup en tenant compte de l'espace disponible
             var popupLeft = mouseX + scrollX + offset;
             var popupWidth = popup.offsetWidth;
-            var windowWidth = window.innerWidth;
+            var windowWidth = window.popup;
 
             // Si la popup dépasse à droite de la fenêtre, la placer à gauche du curseur
             if (popupLeft + popupWidth > windowWidth) {

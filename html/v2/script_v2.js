@@ -28,6 +28,7 @@ function tablePrec() {
     // reset tableau
     body_table.innerHTML = "";
     chargeTable();
+    responsiveThead();
 }
 
 function TableSuiv() {
@@ -35,6 +36,7 @@ function TableSuiv() {
     // reset tableau
     body_table.innerHTML = "";
     chargeTable();
+    responsiveThead();
 }
 
 function chargeTable() {
@@ -112,6 +114,7 @@ function chargeTable() {
 // appel de la fonction quand la page est load
 window.addEventListener("load", function () {
     chargeTable();
+    responsiveThead();
 });
 
 //test pour les bouton
@@ -150,3 +153,16 @@ button_s.addEventListener("click", function () {
 button_p.addEventListener("click", function () {
     debut_tab.scrollIntoView();
 });
+
+// pour le responsive
+function responsiveThead() {
+    document.querySelectorAll('.pokemonTable').forEach(function (table) {
+        let labels = Array.from(table.querySelectorAll('th')).map(function (th) {
+            return th.innerText;
+        })
+        table.querySelectorAll('td').forEach(function (td, i) {
+            td.setAttribute('data-label', labels[i % labels.length])
+        })
+    })
+
+}

@@ -176,21 +176,22 @@ tbody>tr:nth-of-type(odd) {
 button:disabled {
   background-color: #546382;
   border: 3px ridge #bababa;
+  box-shadow: none;
   color: #bababa;
 }
 
 button:hover:enabled {
-  box-shadow: inset 0px 0px 25px #3700ff;
+  box-shadow: inset 0px 0px 20px #d6f526;
 }
 
 button {
   width: 10em;
   position: relative;
   height: 3.5em;
-  border: 3px ridge #1479EA;
+  border: 3px ridge #f8f400;
   outline: none;
-  background-color: transparent;
-  color: #1479EA;
+  background-color: #1479EA;
+  color: #f8f400;
   transition: 1s;
   border-radius: 0.3em;
   font-size: 16px;
@@ -203,7 +204,7 @@ button:hover::before, button:hover::after {
 }
 
 button:hover {
-  box-shadow: inset 0px 0px 25px #1479EA;
+  box-shadow: none;
 }
 
 .info,
@@ -305,7 +306,6 @@ li {
   }
 
   table,
-  thead,
   tbody,
   tr,
   th,
@@ -320,7 +320,42 @@ li {
   }
 
   thead {
+    display: block;
+    color: #000;
+    background-color: transparent;
+    position: fixed;
+    right: 50%;
+    transform: translateX(50%);
+    top: 120px;
+    z-index: 3;
+    margin: 0;
+    width: 90vw;
+  }
+
+  thead tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 100%;
+  }
+
+  thead th:first-child{
+    border-radius: 8px 0 0 8px;
+  }
+
+  #defC{
+    border-radius: 0px 8px 8px 0px;
+  }
+
+  thead tr th:last-child {
     display: none;
+  }
+
+  th {
+    display: flex;
+    align-items: center;
   }
 
   td {
