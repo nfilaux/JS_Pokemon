@@ -1,12 +1,20 @@
 body {
-  background-color: #14409e;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: url(Banniere_PokemonGen01.png);
-  background-repeat: contain / no-repeat;
-  background-attachment: fixed;
-  background-position: center;
+  min-width: 400px;
+}
+
+.fleche {
+  position: fixed;
+  bottom: 33px;
+  right: 11px;
+  background-color: #fff;
+  border: #424242 solid 2px;
+  border-radius: 5px;
+  width: 32px;
+  height: 32px;
 }
 
 .logo {
@@ -24,14 +32,15 @@ table {
 }
 
 thead {
-  background-color: rgb(228 240 245);
+  background-color: #2253be;
+  color: #f8f400;
   position: sticky;
   top: 0px;
 }
 
 th,
 td {
-  border: 1px solid rgb(160 160 160);
+  border: 1px solid rgb(160, 160, 160);
   padding: 8px 10px;
 }
 
@@ -39,19 +48,19 @@ td:last-of-type {
   text-align: center;
 }
 
-tbody {
-  background-color: #fcfcfc;
-}
-
 tbody>tr:nth-of-type(even) {
   background-color: rgb(237 238 242);
+}
+
+tbody>tr:nth-of-type(odd) {
+  background-color: #fcfcfc;
 }
 
 .bouton {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 2em;
+  margin: 2em 2em;
 }
 
 .popup {
@@ -72,8 +81,19 @@ tbody>tr:nth-of-type(even) {
   box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.6);
 }
 
+#croix {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  border: #000 solid 2px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
 .popup::-webkit-scrollbar {
-    width: 0px;
+  width: 0px;
 }
 
 .info img {
@@ -105,7 +125,7 @@ tbody>tr:nth-of-type(even) {
   margin: 0;
 }
 
-.info div h4{
+.info div h4 {
   margin: 15px auto 15px auto;
 }
 
@@ -115,12 +135,13 @@ tbody>tr:nth-of-type(even) {
   justify-content: space-around;
 }
 
-.base p{
+.base p {
   border-radius: 10px;
   border: 2px solid #f8f400;
   background-color: #fff;
-  color:#000;
+  color: #000;
   padding: 10px 20px;
+  margin: 0.5em auto;
 }
 
 .popupimg {
@@ -134,10 +155,10 @@ tbody>tr:nth-of-type(even) {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.id{
+.id {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 105px;
   margin: 0;
   font-size: 1.2em;
 }
@@ -145,20 +166,21 @@ tbody>tr:nth-of-type(even) {
 #nom {
   font-size: 1.5em;
   border-bottom: #f8be00 4px solid;
+  margin-top: 0.2em;
 }
 
-.description{
+.description {
   width: 50%;
 }
 
-input {
+button {
   width: 10em;
   position: relative;
   height: 3.5em;
   border: 3px ridge #f8f400;
   outline: none;
   background-color: transparent;
-  color: white;
+  color: #f8f400;
   transition: 0.2s;
   border-radius: 0.3em;
   font-size: 16px;
@@ -166,13 +188,13 @@ input {
   cursor: pointer;
 }
 
-input:disabled {
+button:disabled {
   background-color: #546382;
   border: 3px ridge #bababa;
 }
 
 
-input::before {
+button::before {
   content: "";
   transform-origin: center;
   position: absolute;
@@ -184,12 +206,12 @@ input::before {
   transition: 0.5s;
 }
 
-input:hover::before,
-input:hover::after {
+button:hover::before,
+button:hover::after {
   transform: scale(0)
 }
 
-input:hover:enabled {
+button:hover:enabled {
   box-shadow: inset 0px 0px 25px #a0c207;
 }
 
@@ -204,7 +226,7 @@ input:hover:enabled {
 }
 
 li {
-  list-style-image: url("../css/pokeball.png");
+  list-style-image: url("../css/images/pokeball.png");
   margin: 0.5em 0;
 }
 
@@ -217,7 +239,7 @@ li {
   background-color: #fff;
 }
 
-.atk div ul div div{
+.atk div ul div div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -228,15 +250,141 @@ li {
   width: 8em;
   border: 2px solid #fff;
   border-radius: 5px;
-  padding: 5px;
+  padding: 1px 5px 5px 5px;
   text-align: center;
+}
+
+/* -------------------------------------------- Bloc pour filtres ------------------------------- */
+.filtres input {
+  width: 80px;
+}
+
+.filtres select {
+  width: 88px
+}
+
+.filtres div {
+  margin: 20px 0;
+}
+
+.filtres {
+  background-color: white;
+  padding: 0 30px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  z-index: 1;
+  right: 4vw;
+  top: 40vh;
+  position: fixed;
+  max-height: 45em;
+  width: 200px;
+  box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.6);
+}
+
+.filtres div {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 1500px) {
+  .filtres {
+    padding: 0;
+    width: 70vw;
+    top: 40px;
+    right: 50%;
+    transform: translateX(50%);
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .filtres div {
+    gap: 10px;
+    min-width: 150px;
+  }
 }
 
 @media only screen and (max-width: 700px) {
 
-  table td {
-    width: 30%;
-    /* Deux colonnes par ligne */
-    box-sizing: border-box;
+  .filtres {
+    width: 90vw;
+  }
+
+  .filtres div {
+    justify-content: center;
+  }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td {
+    display: block;
+  }
+
+  table {
+    width: 25em;
+    border: none;
+    border-collapse: collapse;
+  }
+
+  thead {
+    display: none;
+  }
+
+  td {
+    padding-left: 178px;
+    position: relative;
+    margin-top: -1px;
+  }
+
+  td::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    bottom: 0;
+    background-color: #2253be;
+    color: #f8f400;
+    padding: 8px;
+    content: attr(data-label);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  td:nth-of-type(even) {
+    background-color: rgb(237 238 242);
+  }
+
+  td:nth-of-type(odd) {
+    background-color: #fcfcfc;
+  }
+
+  tr {
+    border: #000 solid 2px;
+    margin-top: -1px;
+    margin: 1em 0;
+  }
+
+  .logo {
+    width: 60%;
+  }
+
+  .popup {
+    margin: auto;
+  }
+
+}
+
+@media only screen and (max-width: 500px) {
+  .filtres {
+    flex-direction: column;
+    width: 60vw;
+  }
+
+  .filtres div {
+    margin: 5px 25px;
+    justify-content: space-between;
   }
 }
