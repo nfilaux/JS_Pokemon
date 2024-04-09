@@ -4,6 +4,11 @@ body {
   flex-direction: column;
   justify-content: center;
   min-width: 400px;
+  font-family: sans-serif;
+  background-image: url("./images/Background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .fleche {
@@ -76,9 +81,10 @@ tbody>tr:nth-of-type(odd) {
   top: 100px;
   position: fixed;
   overflow: auto;
-  max-height: 45em;
-  width: 30em;
+  max-height: 40em;
+  width: 35em;
   box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.6);
+  font-family: sans-serif;
 }
 
 #croix {
@@ -159,7 +165,7 @@ tbody>tr:nth-of-type(odd) {
 .id {
   position: absolute;
   top: 20px;
-  right: 105px;
+  right: 145px;
   margin: 0;
   font-size: 1.2em;
 }
@@ -244,7 +250,6 @@ li {
   border: 2px solid #fff;
   border-radius: 5px;
   padding: 1px 5px 5px 5px;
-  text-align: center;
 }
 
 /* -------------------------------------------- Bloc pour filtres ------------------------------- */
@@ -322,6 +327,10 @@ li {
   }
 
   thead {
+    display: none;
+  }
+
+  .v5thead {
     display: block;
     color: #000;
     background-color: transparent;
@@ -334,7 +343,7 @@ li {
     width: 90vw;
   }
 
-  thead tr {
+  .v5thead tr {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -343,7 +352,7 @@ li {
     width: 100%;
   }
 
-  thead th:first-child{
+  .v5thead th:first-child{
     border-radius: 8px 0 0 8px;
   }
 
@@ -351,7 +360,7 @@ li {
     border-radius: 0px 8px 8px 0px;
   }
 
-  thead tr th:last-child {
+  .v5thead tr th:last-child {
     display: none;
   }
 

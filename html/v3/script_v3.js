@@ -230,13 +230,19 @@ function PrepImages() {
 
             // Calculer la position horizontale de la popup en tenant compte de l'espace disponible
             var popupLeft = mouseX + scrollX + offset;
-            var popupWidth = popup.offsetWidth;
-            var windowWidth = window.popup;
+            var windowWidth = window.innerWidth;
+            var windowHeight = window.innerHeight; 
 
             // Si la popup dépasse à droite de la fenêtre, la placer à gauche du curseur
-            if (popupLeft + popupWidth > windowWidth) {
-                popupLeft = mouseX + scrollX - popupWidth - offset;
+            if (popupLeft + 100 > windowWidth) {
+                popupLeft = mouseX + scrollX - 110 - offset;
             }
+
+            if (popupTop + 100 > windowHeight+scrollY) {
+                popupTop = mouseY + scrollY - 110 - offset;
+            }
+
+            console.log(popupTop)
 
             popup.style.left = popupLeft + 'px';
             popup.style.top = popupTop + 'px';
