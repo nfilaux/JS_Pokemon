@@ -654,8 +654,8 @@ function triParColonne(colonne) {
 
     // trie par nom en cas d'égalité de valeur
     all_pokemons_sort.sort(function (a, b) {
-        let nomA = a.pokemon_name
-        let nomB = b.pokemon_name
+        let nomA = a.pokemon_name;
+        let nomB = b.pokemon_name;
         // Compare les noms des Pokémon pour déterminer l'ordre de tri.
         return (nomA < nomB) ? -1 : (nomA > nomB) ? 1 : 0;
     });
