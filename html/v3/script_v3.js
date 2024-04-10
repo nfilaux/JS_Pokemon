@@ -203,11 +203,12 @@ function ajoutListenerPourPopup() {
 
 // preparation images
 function PrepImages() {
+    
     var pokemonImages = document.querySelectorAll('#pokemonBody img');
     pokemonImages.forEach(image => {
         var popup = document.getElementById("popupimg");
         var thumbnails = document.createElement('img');
-
+        popup.innerHTML = '';
         image.addEventListener('mouseover', function (event) {
             // Enlever le "MS" du nom de fichier
             var nomFichierSansMS = image.src.replace("MS", "");
@@ -241,8 +242,6 @@ function PrepImages() {
             if (popupTop + 100 > windowHeight+scrollY) {
                 popupTop = mouseY + scrollY - 110 - offset;
             }
-
-            console.log(popupTop)
 
             popup.style.left = popupLeft + 'px';
             popup.style.top = popupTop + 'px';
