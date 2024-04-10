@@ -210,6 +210,9 @@ function PrepImages() {
         var thumbnails = document.createElement('img');
         popup.innerHTML = '';
         image.addEventListener('mouseover', function (event) {
+            // Vide la popup 
+            popup.innerHTML = ''
+
             // Enlever le "MS" du nom de fichier
             var nomFichierSansMS = image.src.replace("MS", "");
 
@@ -239,6 +242,7 @@ function PrepImages() {
                 popupLeft = mouseX + scrollX - 110 - offset;
             }
 
+             // Si la popup dépasse en bas de la fenêtre, la placer en haut du curseur
             if (popupTop + 100 > windowHeight+scrollY) {
                 popupTop = mouseY + scrollY - 110 - offset;
             }
@@ -251,8 +255,9 @@ function PrepImages() {
         });
 
         image.addEventListener('mouseout', function () {
+             // Suppression de l'image du popup
             popup.style.display = "none";
-            popup.removeChild(thumbnails); // Suppression de l'image du popup
+            popup.removeChild(thumbnails);
         });
     });
 }

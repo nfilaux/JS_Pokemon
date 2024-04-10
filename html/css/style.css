@@ -129,7 +129,8 @@ tbody>tr:nth-of-type(odd) {
 }
 
 .info div div p {
-  margin: 0;
+  margin: 0 0 0 4px;
+  font-weight:500;
 }
 
 .info div h4 {
