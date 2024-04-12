@@ -378,7 +378,6 @@ function showPopup(pok_id) {
         let attackEnergieDelta = document.createElement('p');
         let attackStamLoss = document.createElement('p');
 
-        attackElementList.id = `${attackName}`;
         attackElementList.style.display = 'none';
 
         let type_atk = document.createElement('img');

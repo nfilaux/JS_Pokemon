@@ -611,6 +611,8 @@ filtreNom.addEventListener("input", function () {
 
 /* --------------------------------- TRIS ---------------------------- */
 
+var thead = document.querySelector('thead');
+thead.classList.add('v5thead');
 
 // dictionnaire pour connaitre chaque trie en cours
 var status_tri = {
