@@ -326,6 +326,11 @@ li {
     width: 70vw;
   }
 
+  .v4thead{
+    position: sticky;
+    top: 100px;
+  }
+
 }
 
 @media only screen and (max-width: 700px) {

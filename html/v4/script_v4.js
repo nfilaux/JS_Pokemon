@@ -528,6 +528,9 @@ function changeColor(type, elem) {
 
 /* -------------------- filtres ----------------------*/
 
+var thead = document.querySelector('thead');
+thead.classList.add('v4thead');
+
 // recupere les input de nos filtres
 var filtreGen = document.getElementById('genF');
 var filtreType = document.getElementById('typeF');
