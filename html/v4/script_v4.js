@@ -353,11 +353,11 @@ function showPopup(pok_id) {
     let atk_f = document.createElement('ul');
 
     var charged = document.createElement('h4');
-    charged.textContent = "Charged : "
+    charged.textContent = "CHARGED MOVES"
     div_c.appendChild(charged)
 
     var fast = document.createElement('h4');
-    fast.textContent = "Fast : "
+    fast.textContent = "FAST MOVES"
     div_f.appendChild(fast)
 
 

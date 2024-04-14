@@ -337,6 +337,7 @@ function showPopup(pok_id) {
 
     // Créer l'élément base atk, def et stam
     let info_base = document.createElement('div');
+    let atkhover = document.createElement('div');
     var info_e = document.createElement('p');
     var info_a = document.createElement('p');
     var info_d = document.createElement('p');
@@ -350,7 +351,6 @@ function showPopup(pok_id) {
     info_base.classList.add("base");
     popup.appendChild(info_base);
 
-
     // Créer l'élément liste atk 
     var info_atk = document.createElement('div')
     var div_c = document.createElement('div')
@@ -359,11 +359,11 @@ function showPopup(pok_id) {
     let atk_f = document.createElement('ul');
 
     var charged = document.createElement('h4');
-    charged.textContent = "Charged : "
+    charged.textContent = "CHARGED MOVES"
     div_c.appendChild(charged)
 
     var fast = document.createElement('h4');
-    fast.textContent = "Fast : "
+    fast.textContent = "FAST MOVES"
     div_f.appendChild(fast)
 
 
@@ -382,7 +382,6 @@ function showPopup(pok_id) {
         let attackEnergieDelta = document.createElement('p');
         let attackStamLoss = document.createElement('p');
 
-        attackElementList.id = `${attackName}`;
         attackElementList.style.display = 'none';
 
         let type_atk = document.createElement('img');
@@ -404,6 +403,7 @@ function showPopup(pok_id) {
             attackElementList.appendChild(attackCrit);
             attackElementList.appendChild(attackEnergieDelta);
             attackElementList.appendChild(attackStamLoss);
+            attackElementList.appendChild(atkhover);
             atk_c.appendChild(attackElementList);
         } else {
             atk_f.appendChild(attackElement);
@@ -413,6 +413,7 @@ function showPopup(pok_id) {
             attackElementList.appendChild(attackCrit);
             attackElementList.appendChild(attackEnergieDelta);
             attackElementList.appendChild(attackStamLoss);
+            attackElementList.appendChild(atkhover);
             atk_f.appendChild(attackElementList);
         }
 

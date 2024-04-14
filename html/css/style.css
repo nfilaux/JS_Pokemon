@@ -263,11 +263,37 @@ li {
 }
 
 .atk div ul li {
-  height: fit-content;
-  width: 8em;
-  border: 2px solid #fff;
-  border-radius: 5px;
-  padding: 1px 5px 5px 5px;
+  font-size: 18px;
+  padding: 5px;
+  font-family: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  position: relative;
+  background: none;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+  width: fit-content;
+}
+
+.atk div ul li:focus:after,
+.atk div ul li:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.atk div ul li:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
 }
 
 .atk div h4{
